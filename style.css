@@ -1,0 +1,18 @@
+body {
+    background-image: url('Dostoprimechatelnosti-Norvegii-e1526370698436.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+h1, #info {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 40px auto;
+    max-width: 500px;
+    text-align: center;
+}
