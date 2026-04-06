@@ -16,3 +16,31 @@ h1, #info {
     max-width: 500px;
     text-align: center;
 }
+
+/* Responsive styles for mobile */
+@media (max-width: 600px) {
+    body {
+        background-attachment: fixed;
+    }
+    h1, #info {
+        padding: 10px;
+        margin: 16px 4px;
+        max-width: 98vw;
+        font-size: 1.1em;
+    }
+    img[alt="Норвегия"] {
+        max-width: 98vw;
+        margin: 16px auto 0 auto;
+    }
+    table {
+        font-size: 0.95em;
+    }
+    button {
+        font-size: 1em;
+        padding: 8px 12px;
+    }
+    footer {
+        font-size: 0.95em;
+        padding: 10px 0;
+    }
+}
