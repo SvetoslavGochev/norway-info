@@ -5,8 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnBG = document.getElementById('btn-bg');
     const btnENG = document.getElementById('btn-eng');
 
+    const footer = document.getElementById('site-footer');
+
     function renderBG() {
         mainTitle.textContent = 'Информация за Норвегия';
+        if (footer) footer.textContent = 'Този сайт е създаден с учебна цел. Данните са информативни и е възможно да има разминавания при автоматичното обновяване.';
         infoDiv.innerHTML = `
             <table style="width:100%;border-collapse:collapse;font-size:1.1em;">
                 <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Страна</th><td style="padding:8px;border-bottom:1px solid #ccc;">Норвегия</td></tr>
@@ -21,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderENG() {
         mainTitle.textContent = 'Norway Information';
+        if (footer) footer.textContent = 'This site is created for educational purposes. The data is for informational use and may differ due to automatic updates.';
         infoDiv.innerHTML = `
             <table style="width:100%;border-collapse:collapse;font-size:1.1em;">
                 <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Country</th><td style="padding:8px;border-bottom:1px solid #ccc;">Norway</td></tr>
