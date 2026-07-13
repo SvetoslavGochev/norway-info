@@ -98,6 +98,89 @@ h1, #info {
     line-height: 1.5;
 }
 
+.museum-highlights {
+    background: rgba(255, 255, 255, 0.84);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 900px;
+}
+
+.museum-highlights h2 {
+    margin: 0 0 8px;
+    text-align: center;
+}
+
+.museum-highlights > p {
+    margin: 0 0 16px;
+    text-align: center;
+    color: #2f3a4d;
+}
+
+.museum-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.museum-card {
+    background: rgba(245, 249, 255, 0.94);
+    border: 1px solid rgba(95, 123, 170, 0.25);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.museum-card h3 {
+    margin: 0 0 8px;
+}
+
+.museum-card p {
+    margin: 0;
+    color: #263346;
+    line-height: 1.5;
+}
+
+.blog-section {
+    background: rgba(255, 255, 255, 0.84);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 900px;
+}
+
+.blog-section h2 {
+    margin: 0 0 8px;
+    text-align: center;
+}
+
+.blog-section > p {
+    margin: 0 0 16px;
+    text-align: center;
+    color: #2f3a4d;
+}
+
+.blog-card {
+    background: rgba(245, 249, 255, 0.94);
+    border: 1px solid rgba(95, 123, 170, 0.25);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.blog-card h3 {
+    margin: 0 0 10px;
+}
+
+.blog-article-content {
+    margin: 0;
+    color: #263346;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    font-family: inherit;
+    font-size: 1rem;
+    max-height: 420px;
+    overflow: auto;
+}
+
 .related-projects {
     background: rgba(255, 255, 255, 0.84);
     border-radius: 12px;
@@ -182,6 +265,20 @@ h1, #info {
     }
 
     .key-cities {
+        margin: 14px 6px;
+        padding: 14px;
+    }
+
+    .museum-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .museum-highlights {
+        margin: 14px 6px;
+        padding: 14px;
+    }
+
+    .blog-section {
         margin: 14px 6px;
         padding: 14px;
     }

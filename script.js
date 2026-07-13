@@ -10,6 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const cityOsloText = document.getElementById('city-oslo-text');
     const cityBergenTitle = document.getElementById('city-bergen-title');
     const cityBergenText = document.getElementById('city-bergen-text');
+    const museumTitle = document.getElementById('museum-title');
+    const museumSubtitle = document.getElementById('museum-subtitle');
+    const museumOsloTitle = document.getElementById('museum-oslo-title');
+    const museumOsloText = document.getElementById('museum-oslo-text');
+    const museumBergenTitle = document.getElementById('museum-bergen-title');
+    const museumBergenText = document.getElementById('museum-bergen-text');
+    const blogTitle = document.getElementById('blog-title');
+    const blogSubtitle = document.getElementById('blog-subtitle');
+    const blogArticleTitle = document.getElementById('blog-article-title');
+    const blogArticleContent = document.getElementById('blog-article-content');
     const projectsTitle = document.getElementById('projects-title');
     const projectsSubtitle = document.getElementById('projects-subtitle');
     const projectATitle = document.getElementById('project-a-title');
@@ -23,6 +33,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectCLink = document.getElementById('project-c-link');
 
     const footer = document.getElementById('site-footer');
+    let operaArticleText = '';
+
+    function setOperaArticleContent(lang) {
+        if (!blogArticleContent) return;
+
+        if (operaArticleText && operaArticleText.trim().length > 0) {
+            blogArticleContent.textContent = operaArticleText;
+            return;
+        }
+
+        blogArticleContent.textContent = lang === 'bg'
+            ? 'Статията се зарежда...'
+            : 'Article is loading...';
+    }
+
+    fetch('assets/tekst/operaOslo.txt')
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Failed to load opera article text');
+            }
+
+            return response.text();
+        })
+        .then((text) => {
+            operaArticleText = text;
+            const currentLang = btnENG.classList.contains('active') ? 'en' : 'bg';
+            setOperaArticleContent(currentLang);
+        })
+        .catch(() => {
+            operaArticleText = '';
+            if (blogArticleContent) {
+                blogArticleContent.textContent = 'Неуспешно зареждане на статията. Провери файла assets/tekst/operaOslo.txt.';
+            }
+        });
 
     function setActiveLanguage(lang) {
         btnBG.classList.toggle('active', lang === 'bg');
@@ -39,6 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
         cityOsloText.textContent = 'Осло е столицата на Норвегия и политически, икономически и културен център на страната. Градът е разположен между фиорд и гори, с отличен обществен транспорт, много музеи и модерна архитектура.';
         cityBergenTitle.textContent = 'Берген';
         cityBergenText.textContent = 'Берген е вторият по големина град в Норвегия и е известен като врата към фиордите. Районът Брюген е част от ЮНЕСКО, а градът е популярен с рибния си пазар, дъждовния климат и красивите планински гледки.';
+        museumTitle.textContent = '🏛️ Културни забележителности и Музей';
+        museumSubtitle.textContent = 'Два музея, които си заслужава да посетиш в Осло и Берген.';
+        museumOsloTitle.textContent = 'Осло: Музей „Мунк“ (Munchmuseet)';
+        museumOsloText.textContent = 'Музеят „Мунк“ е посветен на Едвард Мунк, автора на „Крясъкът“. Колекцията включва картини, скици и лични архиви, а модерната сграда до Ослофиорд е сред новите културни символи на столицата.';
+        museumBergenTitle.textContent = 'Берген: Галерия KODE';
+        museumBergenText.textContent = 'KODE е една от най-големите музейни и музикални институции в Скандинавия. В комплекса могат да се видят творби на Мунк, Пикасо и норвежки художници, както и тематични изложби в центъра на Берген.';
+        blogTitle.textContent = '📝 Блог и Полезни статий';
+        blogSubtitle.textContent = 'Първа статия: Операта на Осло (operaOslo.txt)';
+        blogArticleTitle.textContent = '🎭 Операта на Осло (Operahuset Oslo)';
+        setOperaArticleContent('bg');
         projectsTitle.textContent = '🌐 Още наши проекти';
         projectsSubtitle.textContent = 'Разгледай и други наши интерактивни уеб сайтове.';
         projectATitle.textContent = '🏓 Pin-Pong';
@@ -72,6 +126,16 @@ document.addEventListener('DOMContentLoaded', () => {
         cityOsloText.textContent = 'Oslo is the capital of Norway and the country\'s political, economic, and cultural center. The city sits between a fjord and forests, offering excellent public transport, many museums, and modern architecture.';
         cityBergenTitle.textContent = 'Bergen';
         cityBergenText.textContent = 'Bergen is Norway\'s second-largest city and is known as a gateway to the fjords. The Bryggen district is a UNESCO site, and the city is famous for its fish market, rainy climate, and mountain views.';
+        museumTitle.textContent = '🏛️ Cultural Landmarks and Museum';
+        museumSubtitle.textContent = 'Two museums worth visiting in Oslo and Bergen.';
+        museumOsloTitle.textContent = 'Oslo: MUNCH Museum (Munchmuseet)';
+        museumOsloText.textContent = 'The MUNCH Museum is dedicated to Edvard Munch, the artist behind "The Scream." Its collection includes paintings, sketches, and personal archives, and the modern waterfront building is one of Oslo\'s new cultural icons.';
+        museumBergenTitle.textContent = 'Bergen: KODE Art Museums';
+        museumBergenText.textContent = 'KODE is one of Scandinavia\'s largest museum and music institutions. Visitors can explore works by Munch, Picasso, and Norwegian artists, along with rotating exhibitions in central Bergen.';
+        blogTitle.textContent = '📝 Blog and Useful Articles';
+        blogSubtitle.textContent = 'First article: Oslo Opera House (operaOslo.txt)';
+        blogArticleTitle.textContent = '🎭 Oslo Opera House (Operahuset Oslo)';
+        setOperaArticleContent('en');
         projectsTitle.textContent = '🌐 More Projects';
         projectsSubtitle.textContent = 'Explore our other interactive websites.';
         projectATitle.textContent = '🏓 Pin-Pong';
