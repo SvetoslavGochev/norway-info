@@ -8,17 +8,39 @@
 </head>
 <body>
 
-    <div style="display:flex;justify-content:center;gap:10px;margin-top:20px;">
-        <button id="btn-bg" style="padding:8px 16px;font-weight:bold;cursor:pointer;">BG</button>
-        <button id="btn-eng" style="padding:8px 16px;font-weight:bold;cursor:pointer;">ENG</button>
+    <div class="lang-switcher">
+        <button id="btn-bg">BG</button>
+        <button id="btn-eng">ENG</button>
     </div>
 
-    <img src="Dostoprimechatelnosti-Norvegii-e1526370698436.jpg" alt="Норвегия" style="display:block;max-width:600px;width:100%;margin:40px auto 0 auto;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.2);">
+    <img src="Dostoprimechatelnosti-Norvegii-e1526370698436.jpg" alt="Норвегия" class="hero-image">
     <h1 id="main-title">Информация за Норвегия</h1>
     <div id="info"></div>
 
+    <section id="related-projects" class="related-projects">
+        <h2 id="projects-title"></h2>
+        <p id="projects-subtitle"></p>
+        <div class="projects-grid">
+            <article class="project-card">
+                <h3 id="project-a-title"></h3>
+                <p id="project-a-desc"></p>
+                <a id="project-a-link" href="https://svetoslavgochev.github.io/PIn-Pong/" target="_blank" rel="noopener noreferrer"></a>
+            </article>
+            <article class="project-card">
+                <h3 id="project-b-title"></h3>
+                <p id="project-b-desc"></p>
+                <a id="project-b-link" href="https://svetoslavgochev.github.io/cska-explorer/" target="_blank" rel="noopener noreferrer"></a>
+            </article>
+            <article class="project-card">
+                <h3 id="project-c-title"></h3>
+                <p id="project-c-desc"></p>
+                <a id="project-c-link" href="https://svetoslavgochev.github.io/Indonesia/" target="_blank" rel="noopener noreferrer"></a>
+            </article>
+        </div>
+    </section>
+
     <script src="script.js"></script>
-    <footer id="site-footer" style="position:relative;bottom:0;width:100%;text-align:center;margin-top:40px;color:#333;background:rgba(255,255,255,0.7);padding:16px 0;font-size:1em;">
+    <footer id="site-footer">
         Този сайт е създаден с учебна цел. Данните са информативни и е възможно да има разминавания при автоматичното обновяване.
     </footer>
 </body>
