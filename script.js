@@ -36,13 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectCLink = document.getElementById('project-c-link');
 
     const footer = document.getElementById('site-footer');
-    let operaArticleText = '';
+    let operaArticleTextBg = '';
+    let operaArticleTextEn = '';
 
     function setOperaArticleContent(lang) {
         if (!blogArticleContent) return;
 
-        if (operaArticleText && operaArticleText.trim().length > 0) {
-            blogArticleContent.textContent = operaArticleText;
+        const articleText = lang === 'en' ? operaArticleTextEn : operaArticleTextBg;
+
+        if (articleText && articleText.trim().length > 0) {
+            blogArticleContent.textContent = articleText;
             return;
         }
 
@@ -51,23 +54,31 @@ document.addEventListener('DOMContentLoaded', () => {
             : 'Article is loading...';
     }
 
-    fetch('assets/tekst/operaOslo.txt')
-        .then((response) => {
+    const operaTextLoaders = [
+        ['assets/tekst/operaOslo.txt', 'bg'],
+        ['assets/tekst/operaOslo.en.txt', 'en']
+    ];
+
+    Promise.all(
+        operaTextLoaders.map(([path]) => fetch(path).then((response) => {
             if (!response.ok) {
-                throw new Error('Failed to load opera article text');
+                throw new Error(`Failed to load ${path}`);
             }
 
             return response.text();
-        })
-        .then((text) => {
-            operaArticleText = text;
+        }))
+    )
+        .then(([bgText, enText]) => {
+            operaArticleTextBg = bgText;
+            operaArticleTextEn = enText;
             const currentLang = btnENG.classList.contains('active') ? 'en' : 'bg';
             setOperaArticleContent(currentLang);
         })
         .catch(() => {
-            operaArticleText = '';
+            operaArticleTextBg = '';
+            operaArticleTextEn = '';
             if (blogArticleContent) {
-                blogArticleContent.textContent = 'Неуспешно зареждане на статията. Провери файла assets/tekst/operaOslo.txt.';
+                blogArticleContent.textContent = 'Неуспешно зареждане на статията. Провери файловете assets/tekst/operaOslo.txt и assets/tekst/operaOslo.en.txt.';
             }
         });
 
