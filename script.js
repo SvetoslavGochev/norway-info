@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderBG() {
         setActiveLanguage('bg');
-        mainTitle.textContent = 'Информация за Норвегия';
+        mainTitle.textContent = 'Norway Explorer';
         if (footer) footer.textContent = 'Този сайт е създаден с учебна цел. Данните са информативни и е възможно да има разминавания при автоматичното обновяване.';
         citiesTitle.textContent = '🏙️ Основни градове';
         citiesSubtitle.textContent = 'Два от най-важните и интересни градове в Норвегия.';
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         blogArticleTitle.textContent = '🎭 Операта на Осло (Operahuset Oslo)';
         setOperaArticleContent('bg');
         projectsTitle.textContent = '🌐 Още наши проекти';
-        projectsSubtitle.textContent = 'Разгледай и други наши интерактивни уеб сайтове.';
+        projectsSubtitle.textContent = 'Разгледай и други наши интерактивни уеб проекти.';
         projectATitle.textContent = '🏓 Pin-Pong';
         projectADesc.textContent = 'Бърза мини игра с изчистен интерфейс и динамичен геймплей.';
         projectALink.textContent = 'Посети';
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderENG() {
         setActiveLanguage('en');
-        mainTitle.textContent = 'Norway Information';
+        mainTitle.textContent = 'Norway Explorer';
         if (footer) footer.textContent = 'This site is created for educational purposes. The data is for informational use and may differ due to automatic updates.';
         citiesTitle.textContent = '🏙️ Key Cities';
         citiesSubtitle.textContent = 'Two of the most important and interesting cities in Norway.';
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         blogArticleTitle.textContent = '🎭 Oslo Opera House (Operahuset Oslo)';
         setOperaArticleContent('en');
         projectsTitle.textContent = '🌐 More Projects';
-        projectsSubtitle.textContent = 'Explore our other interactive websites.';
+        projectsSubtitle.textContent = 'Explore our other interactive web projects.';
         projectATitle.textContent = '🏓 Pin-Pong';
         projectADesc.textContent = 'A fast mini game with a clean interface and dynamic gameplay.';
         projectALink.textContent = 'Visit';
