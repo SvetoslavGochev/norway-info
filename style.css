@@ -149,6 +149,22 @@ h1, #info {
     line-height: 1.5;
 }
 
+.source-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #1d4f91, #2d72d2);
+    box-shadow: 0 4px 10px rgba(29, 79, 145, 0.22);
+}
+
+.source-link:hover {
+    filter: brightness(1.05);
+}
+
 .blog-section {
     background: rgba(255, 255, 255, 0.84);
     border-radius: 12px;
@@ -186,6 +202,10 @@ h1, #info {
 
 .blog-card h3 {
     margin: 0 0 10px;
+}
+
+.blog-card .source-link {
+    margin-top: 10px;
 }
 
 .blog-article-content {
