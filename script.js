@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogSubtitle = document.getElementById('blog-subtitle');
     const blogArticleTitle = document.getElementById('blog-article-title');
     const blogArticleContent = document.getElementById('blog-article-content');
+    const blogArticle2Image = document.getElementById('blog-article2-image');
     const blogArticle2Title = document.getElementById('blog-article2-title');
     const blogArticle2Content = document.getElementById('blog-article2-content');
     const blogOperaLink = document.getElementById('blog-opera-link');
@@ -200,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         blogArticleTitle.textContent = '🎭 Операта на Осло (Operahuset Oslo)';
         setOperaArticleContent('bg');
         blogArticle2Title.textContent = '🌊 Норвежките фиорди';
+        if (blogArticle2Image) blogArticle2Image.alt = 'Норвежки фиорд';
         setFjordArticleContent('bg');
         if (blogOperaLink) blogOperaLink.textContent = 'Официален сайт и практична информация';
         projectsTitle.textContent = '🌐 Още наши проекти';
@@ -275,6 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         blogArticleTitle.textContent = '🎭 Oslo Opera House (Operahuset Oslo)';
         setOperaArticleContent('en');
         blogArticle2Title.textContent = '🌊 Norwegian Fjords';
+        if (blogArticle2Image) blogArticle2Image.alt = 'Norwegian fjord';
         setFjordArticleContent('en');
         if (blogOperaLink) blogOperaLink.textContent = 'Official site and practical information';
         projectsTitle.textContent = '🌐 More Projects';
