@@ -1,9 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const STORAGE_KEY_LANG = 'norwayExplorerLang';
     const infoDiv = document.getElementById('info');
     // Фиксирана табличка с информация за Норвегия
     const mainTitle = document.getElementById('main-title');
     const btnBG = document.getElementById('btn-bg');
     const btnENG = document.getElementById('btn-eng');
+    const navCities = document.getElementById('nav-cities');
+    const navBirds = document.getElementById('nav-birds');
+    const navLand = document.getElementById('nav-land');
+    const navMarine = document.getElementById('nav-marine');
+    const navMuseum = document.getElementById('nav-museum');
+    const navBlog = document.getElementById('nav-blog');
     const citiesTitle = document.getElementById('cities-title');
     const citiesSubtitle = document.getElementById('cities-subtitle');
     const cityOsloTitle = document.getElementById('city-oslo-title');
@@ -43,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogSubtitle = document.getElementById('blog-subtitle');
     const blogArticleTitle = document.getElementById('blog-article-title');
     const blogArticleContent = document.getElementById('blog-article-content');
+    const blogArticle2Title = document.getElementById('blog-article2-title');
+    const blogArticle2Content = document.getElementById('blog-article2-content');
     const blogOperaLink = document.getElementById('blog-opera-link');
     const projectsTitle = document.getElementById('projects-title');
     const projectsSubtitle = document.getElementById('projects-subtitle');
@@ -55,10 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectCTitle = document.getElementById('project-c-title');
     const projectCDesc = document.getElementById('project-c-desc');
     const projectCLink = document.getElementById('project-c-link');
+    const backToTop = document.getElementById('backToTop');
 
     const footer = document.getElementById('site-footer');
     let operaArticleTextBg = '';
     let operaArticleTextEn = '';
+    let fjordArticleTextBg = '';
+    let fjordArticleTextEn = '';
 
     function setOperaArticleContent(lang) {
         if (!blogArticleContent) return;
@@ -75,13 +87,30 @@ document.addEventListener('DOMContentLoaded', () => {
             : 'Article is loading...';
     }
 
-    const operaTextLoaders = [
+    function setFjordArticleContent(lang) {
+        if (!blogArticle2Content) return;
+
+        const articleText = lang === 'en' ? fjordArticleTextEn : fjordArticleTextBg;
+
+        if (articleText && articleText.trim().length > 0) {
+            blogArticle2Content.textContent = articleText;
+            return;
+        }
+
+        blogArticle2Content.textContent = lang === 'bg'
+            ? 'Статията се зарежда...'
+            : 'Article is loading...';
+    }
+
+    const articleTextLoaders = [
         ['assets/tekst/operaOslo.txt', 'bg'],
-        ['assets/tekst/operaOslo.en.txt', 'en']
+        ['assets/tekst/operaOslo.en.txt', 'en'],
+        ['assets/tekst/fjordNorway.txt', 'bg'],
+        ['assets/tekst/fjordNorway.en.txt', 'en']
     ];
 
     Promise.all(
-        operaTextLoaders.map(([path]) => fetch(path).then((response) => {
+        articleTextLoaders.map(([path]) => fetch(path).then((response) => {
             if (!response.ok) {
                 throw new Error(`Failed to load ${path}`);
             }
@@ -89,23 +118,36 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.text();
         }))
     )
-        .then(([bgText, enText]) => {
-            operaArticleTextBg = bgText;
-            operaArticleTextEn = enText;
+        .then(([operaBg, operaEn, fjordBg, fjordEn]) => {
+            operaArticleTextBg = operaBg;
+            operaArticleTextEn = operaEn;
+            fjordArticleTextBg = fjordBg;
+            fjordArticleTextEn = fjordEn;
             const currentLang = btnENG.classList.contains('active') ? 'en' : 'bg';
             setOperaArticleContent(currentLang);
+            setFjordArticleContent(currentLang);
         })
         .catch(() => {
             operaArticleTextBg = '';
             operaArticleTextEn = '';
+            fjordArticleTextBg = '';
+            fjordArticleTextEn = '';
             if (blogArticleContent) {
                 blogArticleContent.textContent = 'Неуспешно зареждане на статията. Провери файловете assets/tekst/operaOslo.txt и assets/tekst/operaOslo.en.txt.';
+            }
+            if (blogArticle2Content) {
+                blogArticle2Content.textContent = 'Неуспешно зареждане на статията. Провери файловете assets/tekst/fjordNorway.txt и assets/tekst/fjordNorway.en.txt.';
             }
         });
 
     function setActiveLanguage(lang) {
         btnBG.classList.toggle('active', lang === 'bg');
         btnENG.classList.toggle('active', lang === 'en');
+        try {
+            localStorage.setItem(STORAGE_KEY_LANG, lang);
+        } catch (_error) {
+            // Ignore storage issues in restricted contexts.
+        }
     }
 
     function renderBG() {
@@ -114,6 +156,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (footer) footer.textContent = 'Този сайт е създаден с учебна цел. Данните са информативни и е възможно да има разминавания при автоматичното обновяване.';
         citiesTitle.textContent = '🏙️ Основни градове';
         citiesSubtitle.textContent = 'Два от най-важните и интересни градове в Норвегия.';
+        navCities.textContent = 'Градове';
+        navBirds.textContent = 'Птици';
+        navLand.textContent = 'Сухоземни';
+        navMarine.textContent = 'Морски';
+        navMuseum.textContent = 'Музеи';
+        navBlog.textContent = 'Блог';
         cityOsloTitle.textContent = 'Осло';
         cityOsloText.textContent = 'Осло е столицата на Норвегия и политически, икономически и културен център на страната. Градът е разположен между фиорд и гори, с отличен обществен транспорт, много музеи и модерна архитектура.';
         cityBergenTitle.textContent = 'Берген';
@@ -148,9 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
         museumBergenText.textContent = 'KODE е една от най-големите музейни и музикални институции в Скандинавия. В комплекса могат да се видят творби на Мунк, Пикасо и норвежки художници, както и тематични изложби в центъра на Берген.';
         if (museumBergenLink) museumBergenLink.textContent = 'Официален сайт';
         blogTitle.textContent = '📝 Блог и Полезни статий';
-        blogSubtitle.textContent = 'Първа статия: Операта на Осло (operaOslo.txt)';
+        blogSubtitle.textContent = 'Две статии: Операта на Осло и Норвежките фиорди.';
         blogArticleTitle.textContent = '🎭 Операта на Осло (Operahuset Oslo)';
         setOperaArticleContent('bg');
+        blogArticle2Title.textContent = '🌊 Норвежките фиорди';
+        setFjordArticleContent('bg');
         if (blogOperaLink) blogOperaLink.textContent = 'Официален сайт и практична информация';
         projectsTitle.textContent = '🌐 Още наши проекти';
         projectsSubtitle.textContent = 'Разгледай и други наши интерактивни уеб проекти.';
@@ -181,6 +231,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (footer) footer.textContent = 'This site is created for educational purposes. The data is for informational use and may differ due to automatic updates.';
         citiesTitle.textContent = '🏙️ Key Cities';
         citiesSubtitle.textContent = 'Two of the most important and interesting cities in Norway.';
+        navCities.textContent = 'Cities';
+        navBirds.textContent = 'Birds';
+        navLand.textContent = 'Land';
+        navMarine.textContent = 'Marine';
+        navMuseum.textContent = 'Museums';
+        navBlog.textContent = 'Blog';
         cityOsloTitle.textContent = 'Oslo';
         cityOsloText.textContent = 'Oslo is the capital of Norway and the country\'s political, economic, and cultural center. The city sits between a fjord and forests, offering excellent public transport, many museums, and modern architecture.';
         cityBergenTitle.textContent = 'Bergen';
@@ -215,9 +271,11 @@ document.addEventListener('DOMContentLoaded', () => {
         museumBergenText.textContent = 'KODE is one of Scandinavia\'s largest museum and music institutions. Visitors can explore works by Munch, Picasso, and Norwegian artists, along with rotating exhibitions in central Bergen.';
         if (museumBergenLink) museumBergenLink.textContent = 'Official site';
         blogTitle.textContent = '📝 Blog and Useful Articles';
-        blogSubtitle.textContent = 'First article: Oslo Opera House (operaOslo.txt)';
+        blogSubtitle.textContent = 'Two articles: Oslo Opera House and Norwegian Fjords.';
         blogArticleTitle.textContent = '🎭 Oslo Opera House (Operahuset Oslo)';
         setOperaArticleContent('en');
+        blogArticle2Title.textContent = '🌊 Norwegian Fjords';
+        setFjordArticleContent('en');
         if (blogOperaLink) blogOperaLink.textContent = 'Official site and practical information';
         projectsTitle.textContent = '🌐 More Projects';
         projectsSubtitle.textContent = 'Explore our other interactive web projects.';
@@ -245,6 +303,28 @@ document.addEventListener('DOMContentLoaded', () => {
     btnBG.addEventListener('click', renderBG);
     btnENG.addEventListener('click', renderENG);
 
-    // По подразбиране - български
-    renderBG();
+    if (backToTop) {
+        const handleBackToTopVisibility = () => {
+            backToTop.classList.toggle('show', window.scrollY > 260);
+        };
+
+        window.addEventListener('scroll', handleBackToTopVisibility, { passive: true });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        handleBackToTopVisibility();
+    }
+
+    let preferredLang = 'bg';
+    try {
+        preferredLang = localStorage.getItem(STORAGE_KEY_LANG) || 'bg';
+    } catch (_error) {
+        preferredLang = 'bg';
+    }
+
+    if (preferredLang === 'en') {
+        renderENG();
+    } else {
+        renderBG();
+    }
 });

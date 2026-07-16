@@ -8,6 +8,36 @@ body {
     padding: 0;
 }
 
+.top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom: 1px solid rgba(95, 123, 170, 0.25);
+    backdrop-filter: blur(4px);
+}
+
+.top-nav a {
+    text-decoration: none;
+    font-weight: 700;
+    color: #1d4f91;
+    background: rgba(245, 249, 255, 0.94);
+    border: 1px solid rgba(95, 123, 170, 0.25);
+    border-radius: 999px;
+    padding: 8px 12px;
+    transition: all 0.2s ease;
+}
+
+.top-nav a:hover {
+    background: #1d4f91;
+    color: #fff;
+}
+
 h1, #info {
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
@@ -345,6 +375,7 @@ h1, #info {
     border: 1px solid rgba(95, 123, 170, 0.25);
     border-radius: 12px;
     padding: 14px;
+    margin-bottom: 12px;
 }
 
 .blog-image {
@@ -438,6 +469,32 @@ h1, #info {
     font-size: 1em;
 }
 
+.back-to-top {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    background: #1d4f91;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
 /* Responsive styles for mobile */
 @media (max-width: 600px) {
     body {
@@ -452,6 +509,17 @@ h1, #info {
     .hero-image {
         max-width: 98vw;
         margin: 16px auto 0 auto;
+    }
+
+    .top-nav {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .top-nav a {
+        flex: 0 0 auto;
     }
 
     .cities-grid {
@@ -523,5 +591,10 @@ h1, #info {
     footer {
         font-size: 0.95em;
         padding: 10px 0;
+    }
+
+    .back-to-top {
+        right: 10px;
+        bottom: 10px;
     }
 }
