@@ -15,10 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const citiesSubtitle = document.getElementById('cities-subtitle');
     const cityOsloTitle = document.getElementById('city-oslo-title');
     const cityOsloText = document.getElementById('city-oslo-text');
+    const cityOsloCtaLabel = document.getElementById('city-oslo-cta-label');
     const cityOsloLink = document.getElementById('city-oslo-link');
     const cityBergenTitle = document.getElementById('city-bergen-title');
     const cityBergenText = document.getElementById('city-bergen-text');
+    const cityBergenCtaLabel = document.getElementById('city-bergen-cta-label');
     const cityBergenLink = document.getElementById('city-bergen-link');
+    const cityAffiliateNote = document.getElementById('city-affiliate-note');
     const birdsTitle = document.getElementById('birds-title');
     const birdsSubtitle = document.getElementById('birds-subtitle');
     const birdsIntro = document.getElementById('birds-intro');
@@ -55,8 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogArticle2Image = document.getElementById('blog-article2-image');
     const blogArticle2Title = document.getElementById('blog-article2-title');
     const blogArticle2Content = document.getElementById('blog-article2-content');
+    const blogArticle3Image1 = document.getElementById('blog-article3-image1');
+    const blogArticle3Image2 = document.getElementById('blog-article3-image2');
+    const blogArticle3Title = document.getElementById('blog-article3-title');
+    const blogArticle3Content = document.getElementById('blog-article3-content');
     const blogOperaLink = document.getElementById('blog-opera-link');
     const blogFjordLink = document.getElementById('blog-fjord-link');
+    const blogFjordHotelsLink = document.getElementById('blog-fjord-hotels-link');
+    const blogFootballLink = document.getElementById('blog-football-link');
+    const blogAffiliateNote = document.getElementById('blog-affiliate-note');
     const projectsTitle = document.getElementById('projects-title');
     const projectsSubtitle = document.getElementById('projects-subtitle');
     const projectATitle = document.getElementById('project-a-title');
@@ -75,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let operaArticleTextEn = '';
     let fjordArticleTextBg = '';
     let fjordArticleTextEn = '';
+    let footballArticleTextBg = '';
+    let footballArticleTextEn = '';
 
     function setOperaArticleContent(lang) {
         if (!blogArticleContent) return;
@@ -106,11 +118,28 @@ document.addEventListener('DOMContentLoaded', () => {
             : 'Article is loading...';
     }
 
+    function setFootballArticleContent(lang) {
+        if (!blogArticle3Content) return;
+
+        const articleText = lang === 'en' ? footballArticleTextEn : footballArticleTextBg;
+
+        if (articleText && articleText.trim().length > 0) {
+            blogArticle3Content.textContent = articleText;
+            return;
+        }
+
+        blogArticle3Content.textContent = lang === 'bg'
+            ? 'Статията се зарежда...'
+            : 'Article is loading...';
+    }
+
     const articleTextLoaders = [
         ['assets/tekst/operaOslo.txt', 'bg'],
         ['assets/tekst/operaOslo.en.txt', 'en'],
         ['assets/tekst/fjordNorway.txt', 'bg'],
-        ['assets/tekst/fjordNorway.en.txt', 'en']
+        ['assets/tekst/fjordNorway.en.txt', 'en'],
+        ['assets/tekst/NorwayFotball.txt', 'bg'],
+        ['assets/tekst/NorwayFotball.en.txt', 'en']
     ];
 
     Promise.all(
@@ -122,25 +151,33 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.text();
         }))
     )
-        .then(([operaBg, operaEn, fjordBg, fjordEn]) => {
+        .then(([operaBg, operaEn, fjordBg, fjordEn, footballBg, footballEn]) => {
             operaArticleTextBg = operaBg;
             operaArticleTextEn = operaEn;
             fjordArticleTextBg = fjordBg;
             fjordArticleTextEn = fjordEn;
+            footballArticleTextBg = footballBg;
+            footballArticleTextEn = footballEn;
             const currentLang = btnENG.classList.contains('active') ? 'en' : 'bg';
             setOperaArticleContent(currentLang);
             setFjordArticleContent(currentLang);
+            setFootballArticleContent(currentLang);
         })
         .catch(() => {
             operaArticleTextBg = '';
             operaArticleTextEn = '';
             fjordArticleTextBg = '';
             fjordArticleTextEn = '';
+            footballArticleTextBg = '';
+            footballArticleTextEn = '';
             if (blogArticleContent) {
                 blogArticleContent.textContent = 'Неуспешно зареждане на статията. Провери файловете assets/tekst/operaOslo.txt и assets/tekst/operaOslo.en.txt.';
             }
             if (blogArticle2Content) {
                 blogArticle2Content.textContent = 'Неуспешно зареждане на статията. Провери файловете assets/tekst/fjordNorway.txt и assets/tekst/fjordNorway.en.txt.';
+            }
+            if (blogArticle3Content) {
+                blogArticle3Content.textContent = 'Неуспешно зареждане на статията. Провери файловете assets/tekst/NorwayFotball.txt и assets/tekst/NorwayFotball.en.txt.';
             }
         });
 
@@ -168,10 +205,13 @@ document.addEventListener('DOMContentLoaded', () => {
         navBlog.textContent = 'Блог';
         cityOsloTitle.textContent = 'Осло';
         cityOsloText.textContent = 'Осло е столицата на Норвегия и политически, икономически и културен център на страната. Градът е разположен между фиорд и гори, с отличен обществен транспорт, много музеи и модерна архитектура.';
+        if (cityOsloCtaLabel) cityOsloCtaLabel.textContent = 'Хотели и престой';
         if (cityOsloLink) cityOsloLink.textContent = 'Намери хотел в Осло';
         cityBergenTitle.textContent = 'Берген';
         cityBergenText.textContent = 'Берген е вторият по големина град в Норвегия и е известен като врата към фиордите. Районът Брюген е част от ЮНЕСКО, а градът е популярен с рибния си пазар, дъждовния климат и красивите планински гледки.';
+        if (cityBergenCtaLabel) cityBergenCtaLabel.textContent = 'Хотели и престой';
         if (cityBergenLink) cityBergenLink.textContent = 'Намери хотел в Берген';
+        if (cityAffiliateNote) cityAffiliateNote.textContent = 'Партньорски линкове';
         birdsTitle.textContent = '🕊️ Птици';
         birdsSubtitle.textContent = 'Норвегия е дом на над 400 вида птици и едни от най-големите морски колонии в Европа.';
         birdsIntro.textContent = 'Крайбрежието и северните райони са ключови за наблюдение на редки и впечатляващи видове.';
@@ -202,14 +242,21 @@ document.addEventListener('DOMContentLoaded', () => {
         museumBergenText.textContent = 'KODE е една от най-големите музейни и музикални институции в Скандинавия. В комплекса могат да се видят творби на Мунк, Пикасо и норвежки художници, както и тематични изложби в центъра на Берген.';
         if (museumBergenLink) museumBergenLink.textContent = 'Официален сайт';
         blogTitle.textContent = '📝 Блог и Полезни статий';
-        blogSubtitle.textContent = 'Две статии: Операта на Осло и Норвежките фиорди.';
+        blogSubtitle.textContent = 'Три статии: Операта на Осло, Норвежките фиорди и Футбол в Норвегия.';
         blogArticleTitle.textContent = '🎭 Операта на Осло (Operahuset Oslo)';
         setOperaArticleContent('bg');
         blogArticle2Title.textContent = '🌊 Норвежките фиорди';
         if (blogArticle2Image) blogArticle2Image.alt = 'Норвежки фиорд';
         setFjordArticleContent('bg');
+        blogArticle3Title.textContent = '⚽ Футбол в Норвегия';
+        if (blogArticle3Image1) blogArticle3Image1.alt = 'Футболен мач в Норвегия';
+        if (blogArticle3Image2) blogArticle3Image2.alt = 'Норвежки футболни фенове';
+        setFootballArticleContent('bg');
         if (blogOperaLink) blogOperaLink.textContent = 'Официален сайт и практична информация';
         if (blogFjordLink) blogFjordLink.textContent = 'Круиз почивки (Havila Voyages)';
+        if (blogFjordHotelsLink) blogFjordHotelsLink.textContent = 'Хотели край фиордите';
+        if (blogFootballLink) blogFootballLink.textContent = 'Официален сайт на Норвежкия футболен съюз';
+        if (blogAffiliateNote) blogAffiliateNote.textContent = 'Партньорски линкове';
         projectsTitle.textContent = '🌐 Още наши проекти';
         projectsSubtitle.textContent = 'Разгледай и други наши интерактивни уеб проекти.';
         projectATitle.textContent = '🏓 Pin-Pong';
@@ -247,10 +294,13 @@ document.addEventListener('DOMContentLoaded', () => {
         navBlog.textContent = 'Blog';
         cityOsloTitle.textContent = 'Oslo';
         cityOsloText.textContent = 'Oslo is the capital of Norway and the country\'s political, economic, and cultural center. The city sits between a fjord and forests, offering excellent public transport, many museums, and modern architecture.';
+        if (cityOsloCtaLabel) cityOsloCtaLabel.textContent = 'Hotels and stays';
         if (cityOsloLink) cityOsloLink.textContent = 'Find hotels in Oslo';
         cityBergenTitle.textContent = 'Bergen';
         cityBergenText.textContent = 'Bergen is Norway\'s second-largest city and is known as a gateway to the fjords. The Bryggen district is a UNESCO site, and the city is famous for its fish market, rainy climate, and mountain views.';
+        if (cityBergenCtaLabel) cityBergenCtaLabel.textContent = 'Hotels and stays';
         if (cityBergenLink) cityBergenLink.textContent = 'Find hotels in Bergen';
+        if (cityAffiliateNote) cityAffiliateNote.textContent = 'Affiliate links';
         birdsTitle.textContent = '🕊️ Birds';
         birdsSubtitle.textContent = 'Norway is home to over 400 bird species and some of Europe\'s largest seabird colonies.';
         birdsIntro.textContent = 'The coastline and northern regions are prime areas for spotting rare and impressive birdlife.';
@@ -281,14 +331,21 @@ document.addEventListener('DOMContentLoaded', () => {
         museumBergenText.textContent = 'KODE is one of Scandinavia\'s largest museum and music institutions. Visitors can explore works by Munch, Picasso, and Norwegian artists, along with rotating exhibitions in central Bergen.';
         if (museumBergenLink) museumBergenLink.textContent = 'Official site';
         blogTitle.textContent = '📝 Blog and Useful Articles';
-        blogSubtitle.textContent = 'Two articles: Oslo Opera House and Norwegian Fjords.';
+        blogSubtitle.textContent = 'Three articles: Oslo Opera House, Norwegian Fjords, and Football in Norway.';
         blogArticleTitle.textContent = '🎭 Oslo Opera House (Operahuset Oslo)';
         setOperaArticleContent('en');
         blogArticle2Title.textContent = '🌊 Norwegian Fjords';
         if (blogArticle2Image) blogArticle2Image.alt = 'Norwegian fjord';
         setFjordArticleContent('en');
+        blogArticle3Title.textContent = '⚽ Football in Norway';
+        if (blogArticle3Image1) blogArticle3Image1.alt = 'Football match in Norway';
+        if (blogArticle3Image2) blogArticle3Image2.alt = 'Norwegian football fans';
+        setFootballArticleContent('en');
         if (blogOperaLink) blogOperaLink.textContent = 'Official site and practical information';
         if (blogFjordLink) blogFjordLink.textContent = 'Cruise holidays (Havila Voyages)';
+        if (blogFjordHotelsLink) blogFjordHotelsLink.textContent = 'Hotels near the fjords';
+        if (blogFootballLink) blogFootballLink.textContent = 'Official website of the Norwegian Football Federation';
+        if (blogAffiliateNote) blogAffiliateNote.textContent = 'Affiliate links';
         projectsTitle.textContent = '🌐 More Projects';
         projectsSubtitle.textContent = 'Explore our other interactive web projects.';
         projectATitle.textContent = '🏓 Pin-Pong';
