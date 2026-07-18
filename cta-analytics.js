@@ -2,6 +2,23 @@
     const STORAGE_KEY = 'norwayExplorerCtaClicks';
     const MAX_EVENTS = 200;
 
+    function hidePageLoader() {
+        const loader = document.getElementById('page-loader');
+        if (!loader) return;
+        loader.classList.add('is-hidden');
+        document.body.classList.remove('is-loading');
+        setTimeout(() => {
+            if (loader && loader.parentNode) {
+                loader.parentNode.removeChild(loader);
+            }
+        }, 420);
+    }
+
+    function setupPageLoader() {
+        window.addEventListener('load', hidePageLoader, { once: true });
+        setTimeout(hidePageLoader, 2200);
+    }
+
     function appendEvent(payload) {
         try {
             const existingRaw = localStorage.getItem(STORAGE_KEY);
@@ -60,6 +77,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+        setupPageLoader();
         setupCtaAnalytics();
         registerServiceWorker();
     });
