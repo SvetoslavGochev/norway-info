@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Норвегия EXPLORER</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preload" as="image" href="Dostoprimechatelnosti-Norvegii-e1526370698436.jpg" fetchpriority="high">
+    <link rel="dns-prefetch" href="//www.booking.com">
+    <link rel="dns-prefetch" href="//www.tripadvisor.com">
+    <link rel="dns-prefetch" href="//www.havilavoyages.com">
+    <link rel="preconnect" href="https://www.booking.com" crossorigin>
+    <link rel="preconnect" href="https://www.tripadvisor.com" crossorigin>
+    <link rel="preconnect" href="https://www.havilavoyages.com" crossorigin>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,7 +30,7 @@
         <button id="btn-eng">ENG</button>
     </div>
 
-    <img src="Dostoprimechatelnosti-Norvegii-e1526370698436.jpg" alt="Норвегия" class="hero-image">
+    <img src="Dostoprimechatelnosti-Norvegii-e1526370698436.jpg" alt="Норвегия" class="hero-image" width="1280" height="720" fetchpriority="high" decoding="async">
     <h1 id="main-title">Norway Explorer</h1>
     <div id="info"></div>
 
@@ -32,22 +39,24 @@
         <p id="cities-subtitle"></p>
         <div class="cities-grid">
             <article class="city-card">
-                <img src="assets/oslo.jpg" alt="Oslo" class="city-image" loading="lazy" decoding="async">
+                <img src="assets/oslo.jpg" alt="Oslo" class="city-image" loading="lazy" decoding="async" width="1200" height="800">
                 <h3 id="city-oslo-title"></h3>
                 <p id="city-oslo-text"></p>
                 <p id="city-oslo-cta-label" class="cta-label"></p>
                 <div class="cta-links">
                     <a id="city-oslo-link" class="source-link cta-link" href="https://www.booking.com/city/no/oslo.html?keep_landing=1&sid=cc9032bea9bfc0546c76b36023ce9b88&aid=318615&label=New_Bulgarian_BG_5226352945-ouqjFWED*tpv48Uta6TTcAS813129000392:pl:ta:p1:p2:ac:ap:neg:fi:tikwl-64415190745:lp9047690:li:dec:dm:ag5226352945:cmp108540745&ws=&gad_source=1&gad_campaignid=108540745&gbraid=0AAAAAD_Ls1IKZlYwmr8Zm4OBT-a8QPqNY&gclid=CjwKCAjwpefSBhBvEiwAzyEtZ20bX94QnJ4DIqQOSX4_Amlg0gIUTL4UizeYds4wzF4Cd-zziU68MhoC8HMQAvD_BwE&utm_source=norway_explorer&utm_medium=cta&utm_campaign=oslo_hotels" target="_blank" rel="noopener noreferrer"></a>
+                    <a id="city-oslo-restaurants-link" class="source-link cta-link" href="https://www.tripadvisor.com/Restaurants-g190479-Oslo_Eastern_Norway.html" target="_blank" rel="noopener noreferrer"></a>
                 </div>
                 <p id="city-oslo-affiliate-note" class="affiliate-note"></p>
             </article>
             <article class="city-card">
-                <img src="assets/Bergenstd.png" alt="Bergen" class="city-image" loading="lazy" decoding="async">
+                <img src="assets/Bergenstd.png" alt="Bergen" class="city-image" loading="lazy" decoding="async" width="1200" height="800">
                 <h3 id="city-bergen-title"></h3>
                 <p id="city-bergen-text"></p>
                 <p id="city-bergen-cta-label" class="cta-label"></p>
                 <div class="cta-links">
                     <a id="city-bergen-link" class="source-link cta-link" href="https://www.booking.com/luxury/city/no/bergen.bg.html?aid=356980&label=gog235jc-10CAMYCSiqAUIGYmVyZ2VuSDNYA2gXiAEBmAEzuAEXyAEM2AED6AEB-AEBiAIBqAIBuALSuOfSBsACAdICJGIwMmFjYzA4LWUzYmQtNDA4YS1hNDk4LThlZmNhM2NkOWYwZdgCAeACAQ&sid=34ea4e4ec9101a4f362db611aae9aa91&keep_landing=1&utm_source=norway_explorer&utm_medium=cta&utm_campaign=bergen_hotels" target="_blank" rel="noopener noreferrer"></a>
+                    <a id="city-bergen-restaurants-link" class="source-link cta-link" href="https://www.tripadvisor.com/Restaurants-g190502-Bergen_Hordaland_Western_Norway.html" target="_blank" rel="noopener noreferrer"></a>
                 </div>
                 <p id="city-bergen-affiliate-note" class="affiliate-note"></p>
             </article>
@@ -60,12 +69,12 @@
         <p id="birds-intro" class="birds-intro"></p>
         <div class="birds-grid">
             <article class="bird-card">
-                <img src="assets/orel.png" alt="Морски орел" class="bird-image" loading="lazy" decoding="async">
+                <img src="assets/orel.png" alt="Морски орел" class="bird-image" loading="lazy" decoding="async" width="1200" height="800">
                 <h3 id="bird-eagle-title"></h3>
                 <p id="bird-eagle-text"></p>
             </article>
             <article class="bird-card">
-                <img src="assets/Атлантически тундрик.png" alt="Атлантически тундрик" class="bird-image" loading="lazy" decoding="async">
+                <img src="assets/Атлантически тундрик.png" alt="Атлантически тундрик" class="bird-image" loading="lazy" decoding="async" width="1200" height="800">
                 <h3 id="bird-puffin-title"></h3>
                 <p id="bird-puffin-text"></p>
             </article>
@@ -78,12 +87,12 @@
         <p id="land-animals-intro" class="land-animals-intro"></p>
         <div class="land-animals-grid">
             <article class="land-animal-card">
-                <img src="assets/los.png" alt="Лос" class="land-animal-image" loading="lazy" decoding="async">
+                <img src="assets/los.png" alt="Лос" class="land-animal-image" loading="lazy" decoding="async" width="1200" height="800">
                 <h3 id="land-animal-moose-title"></h3>
                 <p id="land-animal-moose-text"></p>
             </article>
             <article class="land-animal-card">
-                <img src="assets/severenEeln.png" alt="Северен елен" class="land-animal-image" loading="lazy" decoding="async">
+                <img src="assets/severenEeln.png" alt="Северен елен" class="land-animal-image" loading="lazy" decoding="async" width="1200" height="800">
                 <h3 id="land-animal-reindeer-title"></h3>
                 <p id="land-animal-reindeer-text"></p>
             </article>
@@ -96,12 +105,12 @@
         <p id="marine-animals-intro" class="marine-animals-intro"></p>
         <div class="marine-animals-grid">
             <article class="marine-animal-card">
-                <img src="assets/Атлантическасьомга.png" alt="Атлантическа сьомга" class="marine-animal-image" loading="lazy" decoding="async">
+                <img src="assets/Атлантическасьомга.png" alt="Атлантическа сьомга" class="marine-animal-image" loading="lazy" decoding="async" width="1200" height="800">
                 <h3 id="marine-animal-salmon-title"></h3>
                 <p id="marine-animal-salmon-text"></p>
             </article>
             <article class="marine-animal-card">
-                <img src="assets/Норвежкатреска.png" alt="Норвежка треска" class="marine-animal-image" loading="lazy" decoding="async">
+                <img src="assets/Норвежкатреска.png" alt="Норвежка треска" class="marine-animal-image" loading="lazy" decoding="async" width="1200" height="800">
                 <h3 id="marine-animal-cod-title"></h3>
                 <p id="marine-animal-cod-text"></p>
             </article>
@@ -113,13 +122,13 @@
         <p id="museum-subtitle"></p>
         <div class="museum-grid">
             <article class="museum-card">
-                <img src="assets/munkmuzej.png" alt="MUNCH Museum Oslo" class="museum-image" loading="lazy" decoding="async">
+                <img src="assets/munkmuzej.png" alt="MUNCH Museum Oslo" class="museum-image" loading="lazy" decoding="async" width="1200" height="800">
                 <h3 id="museum-oslo-title"></h3>
                 <p id="museum-oslo-text"></p>
                 <a id="museum-oslo-link" class="source-link" href="https://www.munch.no/en/" target="_blank" rel="noopener noreferrer"></a>
             </article>
             <article class="museum-card">
-                <img src="assets/Galerybergen.png" alt="KODE Gallery Bergen" class="museum-image" loading="lazy" decoding="async">
+                <img src="assets/Galerybergen.png" alt="KODE Gallery Bergen" class="museum-image" loading="lazy" decoding="async" width="1200" height="800">
                 <h3 id="museum-bergen-title"></h3>
                 <p id="museum-bergen-text"></p>
                 <a id="museum-bergen-link" class="source-link" href="https://www.kodebergen.no/en" target="_blank" rel="noopener noreferrer"></a>
@@ -131,13 +140,13 @@
         <h2 id="blog-title"></h2>
         <p id="blog-subtitle"></p>
         <article class="blog-card">
-            <img src="assets/operaOslo.png" alt="Oslo Opera House" class="blog-image" loading="lazy" decoding="async">
+            <img src="assets/operaOslo.png" alt="Oslo Opera House" class="blog-image" loading="lazy" decoding="async" width="1200" height="800">
             <h3 id="blog-article-title"></h3>
             <pre id="blog-article-content" class="blog-article-content"></pre>
             <a id="blog-opera-link" class="source-link" href="https://www.operaen.no/en/your-visit-at-oslo-operahouse/practical-information/" target="_blank" rel="noopener noreferrer"></a>
         </article>
         <article class="blog-card">
-            <img id="blog-article2-image" src="assets/fiord.png" alt="Норвежки фиорд" class="blog-image" loading="lazy" decoding="async">
+            <img id="blog-article2-image" src="assets/fiord.png" alt="Норвежки фиорд" class="blog-image" loading="lazy" decoding="async" width="1200" height="800">
             <h3 id="blog-article2-title"></h3>
             <pre id="blog-article2-content" class="blog-article-content"></pre>
             <div class="cta-links">
@@ -148,8 +157,8 @@
         </article>
         <article class="blog-card">
             <div class="blog-gallery">
-                <img id="blog-article3-image1" src="assets/fot1.png" alt="Футболен мач в Норвегия" class="blog-image blog-image-half" loading="lazy" decoding="async">
-                <img id="blog-article3-image2" src="assets/fot2.png" alt="Норвежки футболни фенове" class="blog-image blog-image-half" loading="lazy" decoding="async">
+                <img id="blog-article3-image1" src="assets/fot1.png" alt="Футболен мач в Норвегия" class="blog-image blog-image-half" loading="lazy" decoding="async" width="1200" height="800">
+                <img id="blog-article3-image2" src="assets/fot2.png" alt="Норвежки футболни фенове" class="blog-image blog-image-half" loading="lazy" decoding="async" width="1200" height="800">
             </div>
             <h3 id="blog-article3-title"></h3>
             <pre id="blog-article3-content" class="blog-article-content"></pre>
@@ -179,8 +188,9 @@
             </article>
         </div>
     </section>
-
-    <script src="script.js"></script>
+    <script src="article-cache.js" defer></script>
+    <script src="cta-analytics.js" defer></script>
+    <script src="script.min.js" defer></script>
     <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
     <footer id="site-footer">
         Този сайт е създаден с учебна цел. Данните са информативни и е възможно да има разминавания при автоматичното обновяване.
