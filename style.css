@@ -273,6 +273,26 @@ body.is-loading {
     color: #2f3a4d;
 }
 
+.key-cities > p,
+.birds-section > p,
+.land-animals-section > p,
+.marine-animals-section > p,
+.museum-highlights > p,
+.blog-section > p,
+.related-projects > p {
+    color: #2a3447;
+}
+
+.city-card h3,
+.bird-card h3,
+.land-animal-card h3,
+.marine-animal-card h3,
+.museum-card h3,
+.blog-card h3,
+.project-card h3 {
+    color: #18283d;
+}
+
 .cities-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -320,7 +340,7 @@ body.is-loading {
 }
 
 .cta-link::before {
-    content: "↗ ";
+    content: "\2197\00a0";
     font-weight: 700;
 }
 
