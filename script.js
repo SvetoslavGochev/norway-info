@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const infoDiv = document.getElementById('info');
     // Фиксирана табличка с информация за Норвегия
     const mainTitle = document.getElementById('main-title');
+    const heroKicker = document.getElementById('hero-kicker');
+    const heroSubtitle = document.getElementById('hero-subtitle');
+    const heroCitiesLink = document.getElementById('hero-cities-link');
+    const heroBlogLink = document.getElementById('hero-blog-link');
     const btnBG = document.getElementById('btn-bg');
     const btnENG = document.getElementById('btn-eng');
     const navCities = document.getElementById('nav-cities');
@@ -194,9 +198,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function renderHeroFacts(items) {
+        infoDiv.innerHTML = `
+            <div class="hero-facts-grid">
+                ${items.map(({ label, value }) => `
+                    <div class="hero-fact">
+                        <span class="hero-fact-label">${label}</span>
+                        <span class="hero-fact-value">${value}</span>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
     function renderBG() {
         setActiveLanguage('bg');
         mainTitle.textContent = 'Norway Explorer';
+        if (heroKicker) heroKicker.textContent = 'Скандинавски пътеводител';
+        if (heroSubtitle) heroSubtitle.textContent = 'Практичен гид за градове, фиорди, див живот и културни акценти в Норвегия.';
+        if (heroCitiesLink) heroCitiesLink.textContent = 'Разгледай градовете';
+        if (heroBlogLink) heroBlogLink.textContent = 'Прочети блога';
         if (footer) footer.textContent = 'Този сайт е създаден с учебна цел. Данните са информативни и е възможно да има разминавания при автоматичното обновяване.';
         citiesTitle.textContent = '🏙️ Основни градове';
         citiesSubtitle.textContent = 'Два от най-важните и интересни градове в Норвегия.';
@@ -274,21 +295,23 @@ document.addEventListener('DOMContentLoaded', () => {
         projectCTitle.textContent = '🇮🇩 Indonesia Explorer';
         projectCDesc.textContent = 'Пътеводител с градове, природа, животни и полезни статии.';
         projectCLink.textContent = 'Посети';
-        infoDiv.innerHTML = `
-            <table style="width:100%;border-collapse:collapse;font-size:1.1em;">
-                <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Страна</th><td style="padding:8px;border-bottom:1px solid #ccc;">Норвегия</td></tr>
-                <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Столица</th><td style="padding:8px;border-bottom:1px solid #ccc;">Осло</td></tr>
-                <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Регион</th><td style="padding:8px;border-bottom:1px solid #ccc;">Европа</td></tr>
-                <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Население</th><td style="padding:8px;border-bottom:1px solid #ccc;">5,606,944</td></tr>
-                <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Валута</th><td style="padding:8px;border-bottom:1px solid #ccc;">NOK</td></tr>
-                <tr><th style="text-align:left;padding:8px;">Език</th><td style="padding:8px;">Норвежки (Nynorsk)</td></tr>
-            </table>
-        `;
+        renderHeroFacts([
+            { label: 'Страна', value: 'Норвегия' },
+            { label: 'Столица', value: 'Осло' },
+            { label: 'Регион', value: 'Европа' },
+            { label: 'Население', value: '5,606,944' },
+            { label: 'Валута', value: 'NOK' },
+            { label: 'Език', value: 'Норвежки (Nynorsk)' }
+        ]);
     }
 
     function renderENG() {
         setActiveLanguage('en');
         mainTitle.textContent = 'Norway Explorer';
+        if (heroKicker) heroKicker.textContent = 'Nordic travel guide';
+        if (heroSubtitle) heroSubtitle.textContent = 'A practical guide to Norway\'s cities, fjords, wildlife, and cultural highlights.';
+        if (heroCitiesLink) heroCitiesLink.textContent = 'Explore the cities';
+        if (heroBlogLink) heroBlogLink.textContent = 'Read the blog';
         if (footer) footer.textContent = 'This site is created for educational purposes. The data is for informational use and may differ due to automatic updates.';
         citiesTitle.textContent = '🏙️ Key Cities';
         citiesSubtitle.textContent = 'Two of the most important and interesting cities in Norway.';
@@ -366,16 +389,14 @@ document.addEventListener('DOMContentLoaded', () => {
         projectCTitle.textContent = '🇮🇩 Indonesia Explorer';
         projectCDesc.textContent = 'A guide with cities, nature, wildlife, and useful blog articles.';
         projectCLink.textContent = 'Visit';
-        infoDiv.innerHTML = `
-            <table style="width:100%;border-collapse:collapse;font-size:1.1em;">
-                <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Country</th><td style="padding:8px;border-bottom:1px solid #ccc;">Norway</td></tr>
-                <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Capital</th><td style="padding:8px;border-bottom:1px solid #ccc;">Oslo</td></tr>
-                <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Region</th><td style="padding:8px;border-bottom:1px solid #ccc;">Europe</td></tr>
-                <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Population</th><td style="padding:8px;border-bottom:1px solid #ccc;">5,606,944</td></tr>
-                <tr><th style="text-align:left;padding:8px;border-bottom:1px solid #ccc;">Currency</th><td style="padding:8px;border-bottom:1px solid #ccc;">NOK</td></tr>
-                <tr><th style="text-align:left;padding:8px;">Language</th><td style="padding:8px;">Norwegian Nynorsk</td></tr>
-            </table>
-        `;
+        renderHeroFacts([
+            { label: 'Country', value: 'Norway' },
+            { label: 'Capital', value: 'Oslo' },
+            { label: 'Region', value: 'Europe' },
+            { label: 'Population', value: '5,606,944' },
+            { label: 'Currency', value: 'NOK' },
+            { label: 'Language', value: 'Norwegian Nynorsk' }
+        ]);
     }
 
     btnBG.addEventListener('click', renderBG);
