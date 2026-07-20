@@ -884,3 +884,134 @@ body.is-loading {
         margin-right: 24px;
     }
 }
+
+/* Partnership Section Styles */
+.norway-partnership-card {
+    background: linear-gradient(135deg, #1a3d5c 0%, #0d2438 100%);
+    color: #fff;
+    border-radius: 18px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.32);
+    margin: 20px auto;
+    max-width: 900px;
+    width: min(900px, 90vw);
+}
+
+.norway-partnership-card h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+}
+
+.partnership-text {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 640px;
+}
+
+.partnership-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.partnership-btn {
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #4a90e2 0%, #357abd 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    min-width: 200px;
+    box-shadow: 0 6px 14px rgba(74, 144, 226, 0.22);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.partnership-btn:hover,
+.partnership-btn:focus-visible {
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+    box-shadow: 0 9px 18px rgba(74, 144, 226, 0.28);
+}
+
+.partnership-email-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+}
+
+.partnership-email-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
+}
+
+.partnership-email-link {
+    color: #b3d9ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: text-decoration 0.2s ease;
+}
+
+.partnership-email-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .norway-partnership-card {
+        padding: 20px;
+    }
+
+    .norway-partnership-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .partnership-text {
+        font-size: 0.9rem;
+    }
+
+    .partnership-btn {
+        padding: 11px 24px;
+        font-size: 0.95rem;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .norway-partnership-card {
+        padding: 16px;
+    }
+
+    .norway-partnership-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .partnership-text {
+        font-size: 0.88rem;
+    }
+
+    .partnership-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        min-width: 160px;
+    }
+
+    .partnership-email-row {
+        font-size: 0.84rem;
+    }
+}

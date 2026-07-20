@@ -85,6 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectCLink = document.getElementById('project-c-link');
     const backToTop = document.getElementById('backToTop');
 
+    const norwayPartnerTitle = document.getElementById('norway-partner-title');
+    const norwayPartnerText = document.getElementById('norway-partner-text');
+    const norwayPartnerCta = document.getElementById('norwayPartnershipBtn');
+    const norwayPartnerEmailHint = document.getElementById('norway-partner-email-hint');
+
     const footer = document.getElementById('site-footer');
     let operaArticleTextBg = '';
     let operaArticleTextEn = '';
@@ -280,6 +285,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (blogFjordHotelsLink) blogFjordHotelsLink.textContent = 'Хотели край фиордите';
         if (blogFootballLink) blogFootballLink.textContent = 'Официален сайт на Норвежкия футболен съюз';
         if (blogAffiliateNote) blogAffiliateNote.textContent = 'Партньорски линкове';
+        if (norwayPartnerTitle) norwayPartnerTitle.textContent = 'Партньорство с Norway Explorer';
+        if (norwayPartnerText) norwayPartnerText.textContent = 'Промоцирайте вашия хотел, екскурзия, ресторант или туристическа услуга пред 30,000+ пътешественици. Ние ще включим вашата оферта в нашите ръководства и специализирани статии. За успешни партньорства предлагаме комисионен модел от 12% за всяка резервация или покупка, направена чрез нашите линкове.';
+        if (norwayPartnerCta) norwayPartnerCta.textContent = 'Изпрати запитване';
+        if (norwayPartnerEmailHint) norwayPartnerEmailHint.textContent = 'Или пиши директно на:';
         projectsTitle.textContent = '🌐 Още наши проекти';
         projectsSubtitle.textContent = 'Разгледай и други наши интерактивни уеб проекти.';
         projectATitle.textContent = '🏓 Pin-Pong';
@@ -372,6 +381,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (blogFjordHotelsLink) blogFjordHotelsLink.textContent = 'Hotels near the fjords';
         if (blogFootballLink) blogFootballLink.textContent = 'Official website of the Norwegian Football Federation';
         if (blogAffiliateNote) blogAffiliateNote.textContent = 'Affiliate links';
+        if (norwayPartnerTitle) norwayPartnerTitle.textContent = 'Partnership with Norway Explorer';
+        if (norwayPartnerText) norwayPartnerText.textContent = 'Promote your hotel, tour, restaurant, or travel service to 30,000+ travelers. We will include your offer in our guides and specialized articles. For successful partnerships, we offer a commission model of 12% for each reservation or purchase made through our links.';
+        if (norwayPartnerCta) norwayPartnerCta.textContent = 'Send inquiry';
+        if (norwayPartnerEmailHint) norwayPartnerEmailHint.textContent = 'Or email directly at:';
         projectsTitle.textContent = '🌐 More Projects';
         projectsSubtitle.textContent = 'Explore our other interactive web projects.';
         projectATitle.textContent = '🏓 Pin-Pong';
@@ -395,6 +408,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnBG.addEventListener('click', renderBG);
     btnENG.addEventListener('click', renderENG);
+
+    if (norwayPartnerCta) {
+        norwayPartnerCta.addEventListener('click', () => {
+            window.location.href = 'mailto:svetoslav.gochev@gmail.com?subject=Norway%20Explorer%20Partnership';
+        });
+    }
 
     if (backToTop) {
         const handleBackToTopVisibility = () => {
