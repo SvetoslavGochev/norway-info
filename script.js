@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const STORAGE_KEY_LANG = 'norwayExplorerLang';
+    const NORWAY_SUPPORT_WALLET = '0xfca710eC5eB0FB036157Bb1E114BADc2310efE37';
     const NORWAY_PARTNER_FORM_ENDPOINT = (window.NORWAY_PARTNER_FORM_ENDPOINT || 'https://formspree.io/f/yourFormId').trim();
     const NORWAY_PARTNER_FORM_MIN_SUBMIT_MS = 3000;
     const infoDiv = document.getElementById('info');
@@ -91,6 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const norwayPartnerText = document.getElementById('norway-partner-text');
     const norwayPartnerCta = document.getElementById('norwayPartnershipBtn');
     const norwayPartnerContactHint = document.getElementById('norway-partner-contact-hint');
+    const norwayPartnerWalletLabel = document.getElementById('norway-partner-wallet-label');
+    const norwayPartnerWalletAddress = document.getElementById('norway-partner-wallet-address');
+    const norwayPartnerWalletCopy = document.getElementById('norway-partner-wallet-copy');
+    const norwayPartnerWalletHint = document.getElementById('norway-partner-wallet-hint');
     const norwayPartnerFormTitle = document.getElementById('norway-partner-form-title');
     const norwayPartnerFormNameLabel = document.getElementById('norway-partner-form-name-label');
     const norwayPartnerFormEmailLabel = document.getElementById('norway-partner-form-email-label');
@@ -302,6 +307,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (norwayPartnerTitle) norwayPartnerTitle.textContent = 'Партньорство с Norway Explorer';
         if (norwayPartnerText) norwayPartnerText.textContent = 'Промоцирайте вашия хотел, тур, ресторант или туристическа услуга пред 50,000+ пътешественици в Норвегия. Ние ще включим вашата оферта в нашите интерактивни пътеводители и карти. За успешни партньорства предлагаме revenue-share модел от 15% за всяка резервация или покупка, направена чрез нашите линкове.';
         if (norwayPartnerCta) norwayPartnerCta.textContent = 'Изпрати запитване';
+        if (norwayPartnerWalletLabel) norwayPartnerWalletLabel.textContent = 'MetaMask адрес за подкрепа:';
+        if (norwayPartnerWalletAddress) norwayPartnerWalletAddress.textContent = NORWAY_SUPPORT_WALLET;
+        if (norwayPartnerWalletCopy) {
+            norwayPartnerWalletCopy.textContent = 'Копирай адрес';
+            norwayPartnerWalletCopy.dataset.defaultLabel = 'Копирай адрес';
+        }
+        if (norwayPartnerWalletHint) norwayPartnerWalletHint.textContent = 'Изпращай само през съвместима EVM мрежа.';
         if (norwayPartnerContactHint) norwayPartnerContactHint.textContent = 'Използвай формата по-долу за партньорско запитване.';
         if (norwayPartnerFormTitle) norwayPartnerFormTitle.textContent = 'Форма за партньорство';
         if (norwayPartnerFormNameLabel) norwayPartnerFormNameLabel.textContent = 'Име / Бранд';
@@ -407,6 +419,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (norwayPartnerTitle) norwayPartnerTitle.textContent = 'Partnership with Norway Explorer';
         if (norwayPartnerText) norwayPartnerText.textContent = 'Promote your hotel, tour, restaurant or tourism service to 50,000+ travelers in Norway. We will include your offer in our interactive guides and maps. For successful partnerships, we offer a revenue-share model of 15% for each booking or purchase made through our links.';
         if (norwayPartnerCta) norwayPartnerCta.textContent = 'Send inquiry';
+        if (norwayPartnerWalletLabel) norwayPartnerWalletLabel.textContent = 'MetaMask support address:';
+        if (norwayPartnerWalletAddress) norwayPartnerWalletAddress.textContent = NORWAY_SUPPORT_WALLET;
+        if (norwayPartnerWalletCopy) {
+            norwayPartnerWalletCopy.textContent = 'Copy address';
+            norwayPartnerWalletCopy.dataset.defaultLabel = 'Copy address';
+        }
+        if (norwayPartnerWalletHint) norwayPartnerWalletHint.textContent = 'Send only on a compatible EVM network.';
         if (norwayPartnerContactHint) norwayPartnerContactHint.textContent = 'Use the form below for partnership inquiries.';
         if (norwayPartnerFormTitle) norwayPartnerFormTitle.textContent = 'Partnership form';
         if (norwayPartnerFormNameLabel) norwayPartnerFormNameLabel.textContent = 'Name / Brand';
@@ -455,6 +474,10 @@ document.addEventListener('DOMContentLoaded', () => {
         partnerFormReadyAt = Date.now();
     }
 
+    if (norwayPartnerWalletCopy) {
+        norwayPartnerWalletCopy.addEventListener('click', copyNorwayPartnerWalletAddress);
+    }
+
     function getFormTextByLang(bgText, enText) {
         const activeLang = localStorage.getItem(STORAGE_KEY_LANG) === 'en' ? 'en' : 'bg';
         return activeLang === 'en' ? enText : bgText;
@@ -462,6 +485,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function isNorwayPartnerEndpointConfigured() {
         return !/yourFormId$/i.test(NORWAY_PARTNER_FORM_ENDPOINT);
+    }
+
+    function copyNorwayPartnerWalletAddress() {
+        if (!norwayPartnerWalletCopy) {
+            return;
+        }
+
+        const defaultLabel = norwayPartnerWalletCopy.dataset.defaultLabel || getFormTextByLang('Копирай адрес', 'Copy address');
+        const copiedLabel = getFormTextByLang('Копирано', 'Copied');
+
+        function onSuccess() {
+            norwayPartnerWalletCopy.textContent = copiedLabel;
+            setTimeout(() => {
+                norwayPartnerWalletCopy.textContent = defaultLabel;
+            }, 1400);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(NORWAY_SUPPORT_WALLET).then(onSuccess).catch(() => {
+                copyNorwayWalletFallback(onSuccess);
+            });
+            return;
+        }
+
+        copyNorwayWalletFallback(onSuccess);
+    }
+
+    function copyNorwayWalletFallback(onSuccess) {
+        const textArea = document.createElement('textarea');
+        textArea.value = NORWAY_SUPPORT_WALLET;
+        textArea.setAttribute('readonly', '');
+        textArea.style.position = 'absolute';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        try {
+            const copied = document.execCommand('copy');
+            if (copied) {
+                onSuccess();
+            }
+        } catch (_error) {
+        }
+
+        document.body.removeChild(textArea);
     }
 
     async function handleNorwayPartnerFormSubmit(event) {
