@@ -972,6 +972,76 @@ body.is-loading {
     text-decoration: underline;
 }
 
+.partnership-neutral-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+}
+
+.partner-inquiry-form {
+    margin-top: 6px;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(10, 28, 43, 0.5);
+}
+
+.partner-inquiry-form h3 {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+    color: #f3f9ff;
+}
+
+.partner-inquiry-form-inner {
+    display: grid;
+    gap: 8px;
+}
+
+.partner-inquiry-form-inner label {
+    color: rgba(230, 242, 255, 0.95);
+    font-size: 0.88rem;
+}
+
+.partner-inquiry-form-inner input,
+.partner-inquiry-form-inner textarea {
+    width: 100%;
+    border: 1px solid rgba(173, 210, 245, 0.55);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.98);
+    color: #18314a;
+    padding: 10px 12px;
+    font-size: 0.92rem;
+    font-family: inherit;
+}
+
+.partner-inquiry-form-inner textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.partner-inquiry-submit {
+    margin-top: 4px;
+    min-width: 220px;
+}
+
+.partner-inquiry-status {
+    margin: 2px 0 0;
+    min-height: 1.2em;
+    color: #d8ecff;
+    font-size: 0.88rem;
+}
+
+.partner-honeypot-field {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 @media (max-width: 768px) {
     .norway-partnership-card {
         padding: 20px;
@@ -1013,5 +1083,19 @@ body.is-loading {
 
     .partnership-email-row {
         font-size: 0.84rem;
+    }
+
+    .partnership-neutral-row {
+        font-size: 0.84rem;
+        align-items: flex-start;
+    }
+
+    .partner-inquiry-form {
+        padding: 12px;
+    }
+
+    .partner-inquiry-submit {
+        width: 100%;
+        min-width: 0;
     }
 }

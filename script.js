@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const STORAGE_KEY_LANG = 'norwayExplorerLang';
+    const NORWAY_PARTNER_FORM_ENDPOINT = (window.NORWAY_PARTNER_FORM_ENDPOINT || 'https://formspree.io/f/yourFormId').trim();
+    const NORWAY_PARTNER_FORM_MIN_SUBMIT_MS = 3000;
     const infoDiv = document.getElementById('info');
     // Фиксирана табличка с информация за Норвегия
     const mainTitle = document.getElementById('main-title');
@@ -88,7 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const norwayPartnerTitle = document.getElementById('norway-partner-title');
     const norwayPartnerText = document.getElementById('norway-partner-text');
     const norwayPartnerCta = document.getElementById('norwayPartnershipBtn');
-    const norwayPartnerEmailHint = document.getElementById('norway-partner-email-hint');
+    const norwayPartnerContactHint = document.getElementById('norway-partner-contact-hint');
+    const norwayPartnerFormTitle = document.getElementById('norway-partner-form-title');
+    const norwayPartnerFormNameLabel = document.getElementById('norway-partner-form-name-label');
+    const norwayPartnerFormEmailLabel = document.getElementById('norway-partner-form-email-label');
+    const norwayPartnerFormMessageLabel = document.getElementById('norway-partner-form-message-label');
+    const norwayPartnerFormName = document.getElementById('norway-partner-form-name');
+    const norwayPartnerFormEmail = document.getElementById('norway-partner-form-email');
+    const norwayPartnerFormMessage = document.getElementById('norway-partner-form-message');
+    const norwayPartnerFormWebsite = document.getElementById('norway-partner-form-website');
+    const norwayPartnerFormSubmit = document.getElementById('norway-partner-form-submit');
+    const norwayPartnerFormStatus = document.getElementById('norway-partner-form-status');
+    const norwayPartnerInquiryForm = document.getElementById('norwayPartnerInquiryFormInner');
 
     const footer = document.getElementById('site-footer');
     let operaArticleTextBg = '';
@@ -97,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let fjordArticleTextEn = '';
     let footballArticleTextBg = '';
     let footballArticleTextEn = '';
+    let partnerFormReadyAt = 0;
 
     function setOperaArticleContent(lang) {
         if (!blogArticleContent) return;
@@ -288,7 +302,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (norwayPartnerTitle) norwayPartnerTitle.textContent = 'Партньорство с Norway Explorer';
         if (norwayPartnerText) norwayPartnerText.textContent = 'Промоцирайте вашия хотел, тур, ресторант или туристическа услуга пред 50,000+ пътешественици в Норвегия. Ние ще включим вашата оферта в нашите интерактивни пътеводители и карти. За успешни партньорства предлагаме revenue-share модел от 15% за всяка резервация или покупка, направена чрез нашите линкове.';
         if (norwayPartnerCta) norwayPartnerCta.textContent = 'Изпрати запитване';
-        if (norwayPartnerEmailHint) norwayPartnerEmailHint.textContent = 'Или пиши директно на:';
+        if (norwayPartnerContactHint) norwayPartnerContactHint.textContent = 'Използвай формата по-долу за партньорско запитване.';
+        if (norwayPartnerFormTitle) norwayPartnerFormTitle.textContent = 'Форма за партньорство';
+        if (norwayPartnerFormNameLabel) norwayPartnerFormNameLabel.textContent = 'Име / Бранд';
+        if (norwayPartnerFormEmailLabel) norwayPartnerFormEmailLabel.textContent = 'Имейл за обратна връзка';
+        if (norwayPartnerFormMessageLabel) norwayPartnerFormMessageLabel.textContent = 'Кратко описание на услугата';
+        if (norwayPartnerFormName) norwayPartnerFormName.placeholder = 'Например: Fjord Travel Hub';
+        if (norwayPartnerFormEmail) norwayPartnerFormEmail.placeholder = 'Например: contact@brand.com';
+        if (norwayPartnerFormMessage) norwayPartnerFormMessage.placeholder = 'Напиши какво предлагате и как можем да си партнираме.';
+        if (norwayPartnerFormSubmit) norwayPartnerFormSubmit.textContent = 'Изпрати формата';
+        if (norwayPartnerFormStatus) norwayPartnerFormStatus.textContent = '';
         projectsTitle.textContent = '🌐 Още наши проекти';
         projectsSubtitle.textContent = 'Разгледай и други наши интерактивни уеб проекти.';
         projectATitle.textContent = '� Game Explorer';
@@ -384,7 +407,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (norwayPartnerTitle) norwayPartnerTitle.textContent = 'Partnership with Norway Explorer';
         if (norwayPartnerText) norwayPartnerText.textContent = 'Promote your hotel, tour, restaurant or tourism service to 50,000+ travelers in Norway. We will include your offer in our interactive guides and maps. For successful partnerships, we offer a revenue-share model of 15% for each booking or purchase made through our links.';
         if (norwayPartnerCta) norwayPartnerCta.textContent = 'Send inquiry';
-        if (norwayPartnerEmailHint) norwayPartnerEmailHint.textContent = 'Or email directly at:';
+        if (norwayPartnerContactHint) norwayPartnerContactHint.textContent = 'Use the form below for partnership inquiries.';
+        if (norwayPartnerFormTitle) norwayPartnerFormTitle.textContent = 'Partnership form';
+        if (norwayPartnerFormNameLabel) norwayPartnerFormNameLabel.textContent = 'Name / Brand';
+        if (norwayPartnerFormEmailLabel) norwayPartnerFormEmailLabel.textContent = 'Reply email';
+        if (norwayPartnerFormMessageLabel) norwayPartnerFormMessageLabel.textContent = 'Short service description';
+        if (norwayPartnerFormName) norwayPartnerFormName.placeholder = 'Example: Fjord Travel Hub';
+        if (norwayPartnerFormEmail) norwayPartnerFormEmail.placeholder = 'Example: contact@brand.com';
+        if (norwayPartnerFormMessage) norwayPartnerFormMessage.placeholder = 'Tell us what you offer and how we can partner.';
+        if (norwayPartnerFormSubmit) norwayPartnerFormSubmit.textContent = 'Submit form';
+        if (norwayPartnerFormStatus) norwayPartnerFormStatus.textContent = '';
         projectsTitle.textContent = '🌐 More Projects';
         projectsSubtitle.textContent = 'Explore our other interactive web projects.';
         projectATitle.textContent = '� Game Explorer';
@@ -411,8 +443,96 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (norwayPartnerCta) {
         norwayPartnerCta.addEventListener('click', () => {
-            window.location.href = 'mailto:svetoslav.gochev@gmail.com?subject=Norway%20Explorer%20Partnership';
+            const formSection = document.getElementById('norwayPartnerInquiryForm');
+            if (formSection) {
+                formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
+    }
+
+    if (norwayPartnerInquiryForm) {
+        norwayPartnerInquiryForm.addEventListener('submit', handleNorwayPartnerFormSubmit);
+        partnerFormReadyAt = Date.now();
+    }
+
+    function getFormTextByLang(bgText, enText) {
+        const activeLang = localStorage.getItem(STORAGE_KEY_LANG) === 'en' ? 'en' : 'bg';
+        return activeLang === 'en' ? enText : bgText;
+    }
+
+    function isNorwayPartnerEndpointConfigured() {
+        return !/yourFormId$/i.test(NORWAY_PARTNER_FORM_ENDPOINT);
+    }
+
+    async function handleNorwayPartnerFormSubmit(event) {
+        event.preventDefault();
+
+        if (!norwayPartnerFormName || !norwayPartnerFormEmail || !norwayPartnerFormMessage || !norwayPartnerFormWebsite || !norwayPartnerFormSubmit || !norwayPartnerFormStatus) {
+            return;
+        }
+
+        if (norwayPartnerFormWebsite.value.trim()) {
+            norwayPartnerFormStatus.textContent = getFormTextByLang('Благодарим! Запитването е изпратено успешно.', 'Thank you! Your inquiry was sent successfully.');
+            event.target.reset();
+            return;
+        }
+
+        if (Date.now() - partnerFormReadyAt < NORWAY_PARTNER_FORM_MIN_SUBMIT_MS) {
+            norwayPartnerFormStatus.textContent = getFormTextByLang('Моля, изчакай няколко секунди и опитай отново.', 'Please wait a few seconds and try again.');
+            return;
+        }
+
+        if (!norwayPartnerFormName.value.trim() || !norwayPartnerFormEmail.value.trim() || !norwayPartnerFormMessage.value.trim()) {
+            norwayPartnerFormStatus.textContent = getFormTextByLang('Попълни всички полета, за да изпратиш запитване.', 'Please complete all fields before submitting.');
+            return;
+        }
+
+        if (!norwayPartnerFormEmail.checkValidity()) {
+            norwayPartnerFormStatus.textContent = getFormTextByLang('Моля, въведи валиден имейл адрес.', 'Please enter a valid email address.');
+            return;
+        }
+
+        if (!isNorwayPartnerEndpointConfigured()) {
+            norwayPartnerFormStatus.textContent = getFormTextByLang('Формата не е конфигурирана. Задай валиден Formspree endpoint.', 'Form is not configured. Set a valid Formspree endpoint.');
+            return;
+        }
+
+        const payload = {
+            name: norwayPartnerFormName.value.trim(),
+            email: norwayPartnerFormEmail.value.trim(),
+            message: norwayPartnerFormMessage.value.trim(),
+            source: 'Norway Explorer Partnership Form'
+        };
+
+        norwayPartnerFormStatus.textContent = getFormTextByLang('Изпращане...', 'Sending...');
+        norwayPartnerFormSubmit.disabled = true;
+
+        try {
+            const response = await fetch(NORWAY_PARTNER_FORM_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.status === 429) {
+                norwayPartnerFormStatus.textContent = getFormTextByLang('Изпращанията са ограничени временно. Опитай отново след малко.', 'Too many requests right now. Please try again shortly.');
+                return;
+            }
+
+            if (!response.ok) {
+                throw new Error('Partner form request failed.');
+            }
+
+            norwayPartnerFormStatus.textContent = getFormTextByLang('Благодарим! Запитването е изпратено успешно.', 'Thank you! Your inquiry was sent successfully.');
+            event.target.reset();
+        } catch (_error) {
+            norwayPartnerFormStatus.textContent = getFormTextByLang('Възникна проблем при изпращането. Опитай отново.', 'There was a problem sending your inquiry. Please try again.');
+        } finally {
+            norwayPartnerFormSubmit.disabled = false;
+        }
     }
 
     if (backToTop) {

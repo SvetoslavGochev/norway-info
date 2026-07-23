@@ -13,6 +13,9 @@
     <link rel="preconnect" href="https://www.tripadvisor.com" crossorigin>
     <link rel="preconnect" href="https://www.havilavoyages.com" crossorigin>
     <link rel="stylesheet" href="style.css">
+    <script>
+        window.NORWAY_PARTNER_FORM_ENDPOINT = "https://formspree.io/f/yourFormId";
+    </script>
 </head>
 <body class="is-loading">
 
@@ -207,12 +210,27 @@
         <p id="norway-partner-text" class="partnership-text"></p>
         <div class="partnership-actions">
             <button class="partnership-btn" id="norwayPartnershipBtn"></button>
-            <div class="partnership-email-row">
-                <span class="partnership-email-icon">✉</span>
-                <span id="norway-partner-email-hint" class="partnership-email-hint"></span>
-                <a class="partnership-email-link" href="mailto:svetoslav.gochev@gmail.com?subject=Norway%20Explorer%20Partnership">svetoslav.gochev@gmail.com</a>
-            </div>
+            <p class="partnership-neutral-row"><span class="partnership-email-icon">🛡</span><span id="norway-partner-contact-hint"></span></p>
         </div>
+        <section id="norwayPartnerInquiryForm" class="partner-inquiry-form" aria-labelledby="norway-partner-form-title">
+            <h3 id="norway-partner-form-title"></h3>
+            <form id="norwayPartnerInquiryFormInner" class="partner-inquiry-form-inner" novalidate>
+                <label for="norway-partner-form-website" class="partner-honeypot-field" aria-hidden="true">Website</label>
+                <input id="norway-partner-form-website" class="partner-honeypot-field" name="website" type="text" tabindex="-1" autocomplete="off">
+
+                <label for="norway-partner-form-name" id="norway-partner-form-name-label"></label>
+                <input id="norway-partner-form-name" name="name" type="text" required>
+
+                <label for="norway-partner-form-email" id="norway-partner-form-email-label"></label>
+                <input id="norway-partner-form-email" name="email" type="email" required>
+
+                <label for="norway-partner-form-message" id="norway-partner-form-message-label"></label>
+                <textarea id="norway-partner-form-message" name="message" rows="5" required></textarea>
+
+                <button id="norway-partner-form-submit" class="partnership-btn partner-inquiry-submit" type="submit"></button>
+                <p id="norway-partner-form-status" class="partner-inquiry-status" role="status" aria-live="polite"></p>
+            </form>
+        </section>
     </section>
 
     <script src="article-cache.js" defer></script>
