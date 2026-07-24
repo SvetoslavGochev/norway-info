@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const STORAGE_KEY_LANG = 'norwayExplorerLang';
     const NORWAY_SUPPORT_WALLET = '0xfca710eC5eB0FB036157Bb1E114BADc2310efE37';
-    const NORWAY_PARTNER_FORM_ENDPOINT = (window.NORWAY_PARTNER_FORM_ENDPOINT || 'https://formspree.io/f/yourFormId').trim();
+    const NORWAY_PARTNER_FORM_ENDPOINT = (window.NORWAY_PARTNER_FORM_ENDPOINT || 'https://dashboard.mailerlite.com/jsonp/2530470/forms/193859703235675441/subscribe').trim();
     const NORWAY_PARTNER_FORM_MIN_SUBMIT_MS = 3000;
     const infoDiv = document.getElementById('info');
     // Фиксирана табличка с информация за Норвегия
@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const norwayPartnerTitle = document.getElementById('norway-partner-title');
     const norwayPartnerText = document.getElementById('norway-partner-text');
     const norwayPartnerCta = document.getElementById('norwayPartnershipBtn');
+    const norwayPartnerPaypalBtn = document.getElementById('norwayPartnerPaypalBtn');
     const norwayPartnerContactHint = document.getElementById('norway-partner-contact-hint');
     const norwayPartnerWalletLabel = document.getElementById('norway-partner-wallet-label');
     const norwayPartnerWalletAddress = document.getElementById('norway-partner-wallet-address');
@@ -307,6 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (norwayPartnerTitle) norwayPartnerTitle.textContent = 'Партньорство с Norway Explorer';
         if (norwayPartnerText) norwayPartnerText.textContent = 'Промоцирайте вашия хотел, тур, ресторант или туристическа услуга пред 50,000+ пътешественици в Норвегия. Ние ще включим вашата оферта в нашите интерактивни пътеводители и карти. За успешни партньорства предлагаме revenue-share модел от 15% за всяка резервация или покупка, направена чрез нашите линкове.';
         if (norwayPartnerCta) norwayPartnerCta.textContent = 'Изпрати запитване';
+        if (norwayPartnerPaypalBtn) norwayPartnerPaypalBtn.textContent = 'PayPal плащане';
         if (norwayPartnerWalletLabel) norwayPartnerWalletLabel.textContent = 'MetaMask адрес за подкрепа:';
         if (norwayPartnerWalletAddress) norwayPartnerWalletAddress.textContent = NORWAY_SUPPORT_WALLET;
         if (norwayPartnerWalletCopy) {
@@ -419,6 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (norwayPartnerTitle) norwayPartnerTitle.textContent = 'Partnership with Norway Explorer';
         if (norwayPartnerText) norwayPartnerText.textContent = 'Promote your hotel, tour, restaurant or tourism service to 50,000+ travelers in Norway. We will include your offer in our interactive guides and maps. For successful partnerships, we offer a revenue-share model of 15% for each booking or purchase made through our links.';
         if (norwayPartnerCta) norwayPartnerCta.textContent = 'Send inquiry';
+        if (norwayPartnerPaypalBtn) norwayPartnerPaypalBtn.textContent = 'Pay with PayPal';
         if (norwayPartnerWalletLabel) norwayPartnerWalletLabel.textContent = 'MetaMask support address:';
         if (norwayPartnerWalletAddress) norwayPartnerWalletAddress.textContent = NORWAY_SUPPORT_WALLET;
         if (norwayPartnerWalletCopy) {
@@ -485,6 +488,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function isNorwayPartnerEndpointConfigured() {
         return !/yourFormId$/i.test(NORWAY_PARTNER_FORM_ENDPOINT);
+    }
+
+    function isMailerLiteJsonpEndpoint(endpoint) {
+        return /dashboard\.mailerlite\.com\/jsonp\//i.test(endpoint);
+    }
+
+    async function submitNorwayPartnerFormToMailerLite(payload) {
+        const formData = new URLSearchParams({
+            'fields[email]': payload.email,
+            'fields[name]': payload.name,
+            'fields[message]': payload.message,
+            'fields[source]': payload.source,
+            'ml-submit': '1',
+            anticsrf: 'true'
+        });
+
+        await fetch(NORWAY_PARTNER_FORM_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: formData.toString()
+        });
     }
 
     function copyNorwayPartnerWalletAddress() {
@@ -576,6 +603,13 @@ document.addEventListener('DOMContentLoaded', () => {
         norwayPartnerFormSubmit.disabled = true;
 
         try {
+            if (isMailerLiteJsonpEndpoint(NORWAY_PARTNER_FORM_ENDPOINT)) {
+                await submitNorwayPartnerFormToMailerLite(payload);
+                norwayPartnerFormStatus.textContent = getFormTextByLang('Благодарим! Запитването е изпратено успешно.', 'Thank you! Your inquiry was sent successfully.');
+                event.target.reset();
+                return;
+            }
+
             const response = await fetch(NORWAY_PARTNER_FORM_ENDPOINT, {
                 method: 'POST',
                 headers: {
