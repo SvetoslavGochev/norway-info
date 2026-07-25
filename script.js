@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (norwayPartnerTitle) norwayPartnerTitle.textContent = 'Партньорство с Norway Explorer';
         if (norwayPartnerText) norwayPartnerText.textContent = 'Промоцирайте вашия хотел, тур, ресторант или туристическа услуга пред 50,000+ пътешественици в Норвегия. Ние ще включим вашата оферта в нашите интерактивни пътеводители и карти. За успешни партньорства предлагаме revenue-share модел от 15% за всяка резервация или покупка, направена чрез нашите линкове.';
         if (norwayPartnerCta) norwayPartnerCta.textContent = 'Свържи се с нас';
-        if (norwayPartnerPaypalBtn) norwayPartnerPaypalBtn.textContent = 'PayPal плащане';
+        if (norwayPartnerPaypalBtn) norwayPartnerPaypalBtn.textContent = 'PayPal Подкрепа';
         if (norwayPartnerWalletLabel) norwayPartnerWalletLabel.textContent = 'MetaMask адрес за подкрепа:';
         if (norwayPartnerWalletAddress) norwayPartnerWalletAddress.textContent = NORWAY_SUPPORT_WALLET;
         if (norwayPartnerWalletCopy) {
@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (norwayPartnerTitle) norwayPartnerTitle.textContent = 'Partnership with Norway Explorer';
         if (norwayPartnerText) norwayPartnerText.textContent = 'Promote your hotel, tour, restaurant or tourism service to 50,000+ travelers in Norway. We will include your offer in our interactive guides and maps. For successful partnerships, we offer a revenue-share model of 15% for each booking or purchase made through our links.';
         if (norwayPartnerCta) norwayPartnerCta.textContent = 'Contact us';
-        if (norwayPartnerPaypalBtn) norwayPartnerPaypalBtn.textContent = 'Pay with PayPal';
+        if (norwayPartnerPaypalBtn) norwayPartnerPaypalBtn.textContent = 'Support via PayPal';
         if (norwayPartnerWalletLabel) norwayPartnerWalletLabel.textContent = 'MetaMask support address:';
         if (norwayPartnerWalletAddress) norwayPartnerWalletAddress.textContent = NORWAY_SUPPORT_WALLET;
         if (norwayPartnerWalletCopy) {

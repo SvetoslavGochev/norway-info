@@ -918,7 +918,11 @@ body.is-loading {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    align-items: flex-start;
+    align-items: stretch;
+    border: 1px solid rgba(142, 192, 236, 0.42);
+    border-radius: 12px;
+    background: rgba(12, 38, 58, 0.38);
+    padding: 14px;
 }
 
 .partnership-btn {
@@ -1021,10 +1025,26 @@ body.is-loading {
 }
 
 .partnership-wallet {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     padding: 14px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.24);
+    border: 1px solid rgba(205, 231, 255, 0.5);
     background: rgba(8, 24, 38, 0.42);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.partnership-paypal-btn {
+    width: 100%;
+    min-width: 0;
+    margin-top: 2px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0b5bd3 0%, #1296ff 100%);
+    box-shadow: 0 10px 22px rgba(8, 66, 173, 0.3);
 }
 
 .partnership-wallet-label {
@@ -1063,7 +1083,7 @@ body.is-loading {
 }
 
 .partnership-wallet-hint {
-    margin: 8px 0 0;
+    margin: 0;
     color: rgba(220, 237, 255, 0.88);
     font-size: 0.83rem;
     line-height: 1.4;
@@ -1090,6 +1110,11 @@ body.is-loading {
 
     .partnership-social-grid {
         grid-template-columns: 1fr;
+    }
+
+    .partnership-wallet,
+    .partnership-actions {
+        padding: 12px;
     }
 }
 
