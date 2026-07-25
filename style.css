@@ -926,6 +926,7 @@ body.is-loading {
 }
 
 .partnership-btn {
+    box-sizing: border-box;
     padding: 12px 28px;
     font-size: 1rem;
     font-weight: 700;
@@ -1108,6 +1109,11 @@ body.is-loading {
         min-width: 180px;
     }
 
+    .partnership-social-btn,
+    .partnership-paypal-btn {
+        min-width: 0;
+    }
+
     .partnership-social-grid {
         grid-template-columns: 1fr;
     }
@@ -1135,6 +1141,11 @@ body.is-loading {
         padding: 10px 20px;
         font-size: 0.9rem;
         min-width: 160px;
+    }
+
+    .partnership-social-btn,
+    .partnership-paypal-btn {
+        min-width: 0;
     }
 
     .partnership-email-row {
