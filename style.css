@@ -706,6 +706,12 @@ body.is-loading {
     font-size: 1em;
 }
 
+#site-footer a {
+    color: #1d4f91;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
 .back-to-top {
     position: fixed;
     right: 16px;
