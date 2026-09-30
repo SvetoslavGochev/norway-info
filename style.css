@@ -775,6 +775,14 @@ body.is-loading {
     padding-top: 0;
 }
 
+.conversation-language-row--no-label {
+    grid-template-columns: auto 1fr;
+}
+
+.conversation-language-row.conversation-language-row--no-label p {
+    grid-column: 2;
+}
+
 .conversation-flag {
     display: inline-flex;
     align-items: center;
@@ -804,6 +812,11 @@ body.is-loading {
     color: #243449;
     line-height: 1.5;
     grid-column: 3;
+}
+
+.conversation-icon {
+    margin-left: 4px;
+    font-size: 1.1em;
 }
 
 .conversation-pronunciation p {

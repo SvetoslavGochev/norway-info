@@ -233,6 +233,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
+    // Order must match the phrases in conversationPhrases.
+    const conversationPhraseIcons = {
+        airport: ['🛄', '🚕', '📶', '🛫', '🏙️', '⏱️', 'ℹ️', '🧳', '💱', '🏨'],
+        cafe: ['📋', '👍', '🥛', '☕', '🌤️', '🌱', '🧾', '🍵', '🥤', '💵'],
+        restaurant: ['🍽️', '⭐', '🥗', '🧂', '🕖', '🐟', '🧾', '🧀', '🌾', '🥦'],
+        hotel: ['📝', '🛏️', '🌙', '🚪', '🔑', '📶', '🚿', '🚕', '🧺', '🕚'],
+        transport: ['🚌', '🚏', '🎫', '💳', '🕒', '🚆', '🚕', '⚓', '🚗', '🚇'],
+        bar: ['🍺', '🧃', '🍻', '📜', '🥨', '📍', '🎸', '🍹', '💳', '🏧'],
+        date: ['📅', '☕', '😊', '🗺️', '⏰', '🗓️', '🤔', '📍', '🚶', '❤️'],
+        work: ['💼', '🕘', '🗣️', '📋', '🚀', '📄', '🎓', '💰', '📧', '🤝'],
+        shopping: ['🏷️', '📏', '💳', '🎨', '🏔️', '👕', '🔖', '🎁', '🛍️', '↩️'],
+        help: ['🆘', '🏥', '🚑', '📱', '💊', '🤒', '🧭', '🩺', '🏨', '🗣️']
+    };
+
     const conversationGuideData = {
         bg: {
             kicker: 'Разговорник',
@@ -383,13 +397,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return null;
         };
 
-        const renderLanguageRow = (fieldLabel, text, flag, isMainRow, extraClass = '') => {
+        const renderLanguageRow = (fieldLabel, text, flag, isMainRow, extraClass = '', icon = '') => {
             if (!text) return '';
             return `
-                <div class="conversation-language-row ${isMainRow ? 'conversation-language-row--main' : ''} ${extraClass}">
+                <div class="conversation-language-row ${isMainRow ? 'conversation-language-row--main' : ''} ${fieldLabel ? '' : 'conversation-language-row--no-label'} ${extraClass}">
                     <span class="conversation-flag" aria-hidden="true">${flag}</span>
-                    <span class="conversation-label">${fieldLabel}</span>
-                    <p>${text}</p>
+                    ${fieldLabel ? `<span class="conversation-label">${fieldLabel}</span>` : ''}
+                    <p>${text}${icon ? ` <span class="conversation-icon" aria-hidden="true">${icon}</span>` : ''}</p>
                 </div>
             `;
         };
@@ -397,12 +411,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const renderCategory = (categoryId) => {
             const category = categoryButtons.find((item) => item.id === categoryId) || categoryButtons[0];
             const phrases = category ? category.phrases : [];
+            const icons = (category && conversationPhraseIcons[category.id]) || [];
 
-            conversationList.innerHTML = phrases.map((phrase) => {
+            conversationList.innerHTML = phrases.map((phrase, phraseIndex) => {
                 const rows = [];
                 const primaryKey = lang === 'bg' ? 'bg' : 'en';
                 const primaryText = lang === 'bg' ? (phrase.bg || phrase.q || '') : (phrase.q || phrase.bg || '');
-                const primaryLabel = lang === 'bg' ? 'Translation' : 'Question';
+                const primaryLabel = '';
                 const primaryFlag = lang === 'bg' ? '🇧🇬' : '🇬🇧';
 
                 if (primaryText) {
@@ -410,7 +425,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         lang: primaryKey,
                         text: primaryText,
                         label: primaryLabel,
-                        flag: primaryFlag
+                        flag: primaryFlag,
+                        icon: icons[phraseIndex] || ''
                     });
                 }
 
@@ -418,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     rows.push({
                         lang: 'no',
                         text: phrase.no,
-                        label: '🇳🇴',
+                        label: '',
                         flag: '🇳🇴'
                     });
                 }
@@ -427,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     rows.push({
                         lang: 'pronunciation',
                         text: phrase.pronunciation,
-                        label: lang === 'bg' ? 'Pronunciation' : 'Pronunciation',
+                        label: '',
                         flag: '🔊',
                         extraClass: 'conversation-pronunciation'
                     });
@@ -447,7 +463,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     row.text,
                     row.flag,
                     index === 0,
-                    row.extraClass || ''
+                    row.extraClass || '',
+                    row.icon || ''
                 )).join('');
 
                 return `
