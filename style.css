@@ -757,9 +757,38 @@ body.is-loading {
     box-shadow: 0 10px 24px rgba(31, 52, 84, 0.08);
 }
 
+.conversation-language-row {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    border-top: 1px solid rgba(95, 123, 170, 0.12);
+}
+
+.conversation-language-row:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.conversation-language-row--main {
+    padding-top: 0;
+}
+
+.conversation-flag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #f3f8ff;
+    font-size: 1rem;
+    line-height: 1;
+}
+
 .conversation-label {
     display: inline-block;
-    margin-bottom: 8px;
     padding: 5px 8px;
     border-radius: 999px;
     background: #ebf3ff;
@@ -770,14 +799,17 @@ body.is-loading {
     text-transform: uppercase;
 }
 
-.conversation-item p {
-    margin: 0 0 12px;
+.conversation-language-row p {
+    margin: 0;
     color: #243449;
     line-height: 1.5;
+    grid-column: 3;
 }
 
-.conversation-item p:last-child {
-    margin-bottom: 0;
+.conversation-pronunciation p {
+    color: #4d627e;
+    font-style: italic;
+    letter-spacing: 0.02em;
 }
 
 .related-projects {
