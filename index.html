@@ -52,10 +52,9 @@
     <nav class="top-nav" id="top-nav">
         <a href="#key-cities" id="nav-cities"></a>
         <a href="#birds-section" id="nav-birds"></a>
-        <a href="#land-animals-section" id="nav-land"></a>
-        <a href="#marine-animals-section" id="nav-marine"></a>
         <a href="#museum-highlights" id="nav-museum"></a>
         <a href="#blog-section" id="nav-blog"></a>
+        <a href="#conversation-guide" id="nav-conversation"></a>
     </nav>
 
     <div class="lang-switcher">
@@ -104,57 +103,72 @@
         </div>
     </section>
 
-    <section id="birds-section" class="birds-section">
-        <h2 id="birds-title"></h2>
-        <p id="birds-subtitle"></p>
-        <p id="birds-intro" class="birds-intro"></p>
-        <div class="birds-grid">
-            <article class="bird-card">
-                <img src="assets/orel.png" alt="Морски орел" class="bird-image" loading="lazy" decoding="async" width="1200" height="800">
-                <h3 id="bird-eagle-title"></h3>
-                <p id="bird-eagle-text"></p>
-            </article>
-            <article class="bird-card">
-                <img src="assets/Атлантически тундрик.png" alt="Атлантически тундрик" class="bird-image" loading="lazy" decoding="async" width="1200" height="800">
-                <h3 id="bird-puffin-title"></h3>
-                <p id="bird-puffin-text"></p>
-            </article>
+    <section id="birds-section" class="birds-section collapsible-section collapsed">
+        <div class="section-header">
+            <h2 id="birds-title"></h2>
+            <button type="button" class="toggle-section-btn" data-toggle-target="birds-section-content" aria-expanded="false" id="birds-toggle">Покажи</button>
+        </div>
+        <div id="birds-section-content" class="section-content">
+            <p id="birds-subtitle"></p>
+            <p id="birds-intro" class="birds-intro"></p>
+            <div class="birds-grid">
+                <article class="bird-card">
+                    <img src="assets/orel.png" alt="Морски орел" class="bird-image" loading="lazy" decoding="async" width="1200" height="800">
+                    <h3 id="bird-eagle-title"></h3>
+                    <p id="bird-eagle-text"></p>
+                </article>
+                <article class="bird-card">
+                    <img src="assets/Атлантически тундрик.png" alt="Атлантически тундрик" class="bird-image" loading="lazy" decoding="async" width="1200" height="800">
+                    <h3 id="bird-puffin-title"></h3>
+                    <p id="bird-puffin-text"></p>
+                </article>
+            </div>
         </div>
     </section>
 
-    <section id="land-animals-section" class="land-animals-section">
-        <h2 id="land-animals-title"></h2>
-        <p id="land-animals-subtitle"></p>
-        <p id="land-animals-intro" class="land-animals-intro"></p>
-        <div class="land-animals-grid">
-            <article class="land-animal-card">
-                <img src="assets/los.png" alt="Лос" class="land-animal-image" loading="lazy" decoding="async" width="1200" height="800">
-                <h3 id="land-animal-moose-title"></h3>
-                <p id="land-animal-moose-text"></p>
-            </article>
-            <article class="land-animal-card">
-                <img src="assets/severenEeln.png" alt="Северен елен" class="land-animal-image" loading="lazy" decoding="async" width="1200" height="800">
-                <h3 id="land-animal-reindeer-title"></h3>
-                <p id="land-animal-reindeer-text"></p>
-            </article>
+    <section id="land-animals-section" class="land-animals-section collapsible-section collapsed">
+        <div class="section-header">
+            <h2 id="land-animals-title"></h2>
+            <button type="button" class="toggle-section-btn" data-toggle-target="land-animals-section-content" aria-expanded="false" id="land-toggle">Покажи</button>
+        </div>
+        <div id="land-animals-section-content" class="section-content">
+            <p id="land-animals-subtitle"></p>
+            <p id="land-animals-intro" class="land-animals-intro"></p>
+            <div class="land-animals-grid">
+                <article class="land-animal-card">
+                    <img src="assets/los.png" alt="Лос" class="land-animal-image" loading="lazy" decoding="async" width="1200" height="800">
+                    <h3 id="land-animal-moose-title"></h3>
+                    <p id="land-animal-moose-text"></p>
+                </article>
+                <article class="land-animal-card">
+                    <img src="assets/severenEeln.png" alt="Северен елен" class="land-animal-image" loading="lazy" decoding="async" width="1200" height="800">
+                    <h3 id="land-animal-reindeer-title"></h3>
+                    <p id="land-animal-reindeer-text"></p>
+                </article>
+            </div>
         </div>
     </section>
 
-    <section id="marine-animals-section" class="marine-animals-section">
-        <h2 id="marine-animals-title"></h2>
-        <p id="marine-animals-subtitle"></p>
-        <p id="marine-animals-intro" class="marine-animals-intro"></p>
-        <div class="marine-animals-grid">
-            <article class="marine-animal-card">
-                <img src="assets/Атлантическасьомга.png" alt="Атлантическа сьомга" class="marine-animal-image" loading="lazy" decoding="async" width="1200" height="800">
-                <h3 id="marine-animal-salmon-title"></h3>
-                <p id="marine-animal-salmon-text"></p>
-            </article>
-            <article class="marine-animal-card">
-                <img src="assets/Норвежкатреска.png" alt="Норвежка треска" class="marine-animal-image" loading="lazy" decoding="async" width="1200" height="800">
-                <h3 id="marine-animal-cod-title"></h3>
-                <p id="marine-animal-cod-text"></p>
-            </article>
+    <section id="marine-animals-section" class="marine-animals-section collapsible-section collapsed">
+        <div class="section-header">
+            <h2 id="marine-animals-title"></h2>
+            <button type="button" class="toggle-section-btn" data-toggle-target="marine-animals-section-content" aria-expanded="false" id="marine-toggle">Покажи</button>
+        </div>
+        <div id="marine-animals-section-content" class="section-content">
+            <p id="marine-animals-subtitle"></p>
+            <p id="marine-animals-intro" class="marine-animals-intro"></p>
+            <div class="marine-animals-grid">
+                <article class="marine-animal-card">
+                    <img src="assets/Атлантическасьомга.png" alt="Атлантическа сьомга" class="marine-animal-image" loading="lazy" decoding="async" width="1200" height="800">
+                    <h3 id="marine-animal-salmon-title"></h3>
+                    <p id="marine-animal-salmon-text"></p>
+                </article>
+                <article class="marine-animal-card">
+                    <img src="assets/Норвежкатреска.png" alt="Норвежка треска" class="marine-animal-image" loading="lazy" decoding="async" width="1200" height="800">
+                    <h3 id="marine-animal-cod-title"></h3>
+                    <p id="marine-animal-cod-text"></p>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -180,33 +194,61 @@
     <section id="blog-section" class="blog-section">
         <h2 id="blog-title"></h2>
         <p id="blog-subtitle"></p>
-        <article class="blog-card">
-            <img src="assets/operaOslo.png" alt="Oslo Opera House" class="blog-image" loading="lazy" decoding="async" width="1200" height="800">
-            <h3 id="blog-article-title"></h3>
-            <pre id="blog-article-content" class="blog-article-content"></pre>
-            <a id="blog-opera-link" class="source-link" href="https://www.operaen.no/en/your-visit-at-oslo-operahouse/practical-information/" target="_blank" rel="noopener noreferrer"></a>
-        </article>
-        <article class="blog-card">
-            <img id="blog-article2-image" src="assets/fiord.png" alt="Норвежки фиорд" class="blog-image" loading="lazy" decoding="async" width="1200" height="800">
-            <h3 id="blog-article2-title"></h3>
-            <pre id="blog-article2-content" class="blog-article-content"></pre>
-            <div class="cta-links">
-                <a id="blog-fjord-link" class="source-link cta-link" href="https://www.havilavoyages.com/?utm_source=norway_explorer&utm_medium=cta&utm_campaign=fjord_cruise" target="_blank" rel="noopener noreferrer"></a>
-                <a id="blog-fjord-hotels-link" class="source-link cta-link" href="https://www.booking.com/country/no.html?utm_source=norway_explorer&utm_medium=cta&utm_campaign=fjord_hotels" target="_blank" rel="noopener noreferrer"></a>
+        <article class="blog-card collapsible-section collapsed">
+            <div class="section-header">
+                <h3 id="blog-article-title"></h3>
+                <button type="button" class="toggle-section-btn" data-toggle-target="blog-article-content-wrapper" aria-expanded="false">Виж</button>
             </div>
-            <p id="blog-affiliate-note" class="affiliate-note"></p>
-        </article>
-        <article class="blog-card">
-            <div class="blog-gallery">
-                <img id="blog-article3-image1" src="assets/fot1.png" alt="Футболен мач в Норвегия" class="blog-image blog-image-half" loading="lazy" decoding="async" width="1200" height="800">
-                <img id="blog-article3-image2" src="assets/fot2.png" alt="Норвежки футболни фенове" class="blog-image blog-image-half" loading="lazy" decoding="async" width="1200" height="800">
+            <div id="blog-article-content-wrapper" class="section-content">
+                <img src="assets/operaOslo.png" alt="Oslo Opera House" class="blog-image" loading="lazy" decoding="async" width="1200" height="800">
+                <pre id="blog-article-content" class="blog-article-content"></pre>
+                <a id="blog-opera-link" class="source-link" href="https://www.operaen.no/en/your-visit-at-oslo-operahouse/practical-information/" target="_blank" rel="noopener noreferrer"></a>
             </div>
-            <h3 id="blog-article3-title"></h3>
-            <pre id="blog-article3-content" class="blog-article-content"></pre>
-            <a id="blog-football-link" class="source-link cta-link" href="https://www.fotball.no/" target="_blank" rel="noopener noreferrer"></a>
+        </article>
+        <article class="blog-card collapsible-section collapsed">
+            <div class="section-header">
+                <h3 id="blog-article2-title"></h3>
+                <button type="button" class="toggle-section-btn" data-toggle-target="blog-article2-content-wrapper" aria-expanded="false">Виж</button>
+            </div>
+            <div id="blog-article2-content-wrapper" class="section-content">
+                <img id="blog-article2-image" src="assets/fiord.png" alt="Норвежки фиорд" class="blog-image" loading="lazy" decoding="async" width="1200" height="800">
+                <pre id="blog-article2-content" class="blog-article-content"></pre>
+                <div class="cta-links">
+                    <a id="blog-fjord-link" class="source-link cta-link" href="https://www.havilavoyages.com/?utm_source=norway_explorer&utm_medium=cta&utm_campaign=fjord_cruise" target="_blank" rel="noopener noreferrer"></a>
+                    <a id="blog-fjord-hotels-link" class="source-link cta-link" href="https://www.booking.com/country/no.html?utm_source=norway_explorer&utm_medium=cta&utm_campaign=fjord_hotels" target="_blank" rel="noopener noreferrer"></a>
+                </div>
+                <p id="blog-affiliate-note" class="affiliate-note"></p>
+            </div>
+        </article>
+        <article class="blog-card collapsible-section collapsed">
+            <div class="section-header">
+                <h3 id="blog-article3-title"></h3>
+                <button type="button" class="toggle-section-btn" data-toggle-target="blog-article3-content-wrapper" aria-expanded="false">Виж</button>
+            </div>
+            <div id="blog-article3-content-wrapper" class="section-content">
+                <div class="blog-gallery">
+                    <img id="blog-article3-image1" src="assets/fot1.png" alt="Футболен мач в Норвегия" class="blog-image blog-image-half" loading="lazy" decoding="async" width="1200" height="800">
+                    <img id="blog-article3-image2" src="assets/fot2.png" alt="Норвежки футболни фенове" class="blog-image blog-image-half" loading="lazy" decoding="async" width="1200" height="800">
+                </div>
+                <pre id="blog-article3-content" class="blog-article-content"></pre>
+                <a id="blog-football-link" class="source-link cta-link" href="https://www.fotball.no/" target="_blank" rel="noopener noreferrer"></a>
+            </div>
         </article>
     </section>
-    
+
+    <section id="conversation-guide" class="conversation-guide">
+        <div class="conversation-head">
+            <p id="conversation-kicker" class="conversation-kicker"></p>
+            <h2 id="conversation-title"></h2>
+            <p id="conversation-subtitle" class="conversation-subtitle"></p>
+        </div>
+        <div class="conversation-toolbar">
+            <div id="conversation-categories" class="conversation-categories" aria-label="Conversation categories"></div>
+        </div>
+        <div class="conversation-panel">
+            <div id="conversation-list" class="conversation-list" aria-live="polite"></div>
+        </div>
+    </section>
 
     <section id="related-projects" class="related-projects">
         <h2 id="projects-title"></h2>
